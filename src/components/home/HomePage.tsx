@@ -9,13 +9,32 @@ interface FormValues {
     address: string;
 }
 
+interface SelectedValues {
+    workPreference: string;
+    availability: string;
+    experience: string;
+    speaking: string;
+}
+
 interface Step1Text {
     text1: string;
     text2: string;
 }
+
+interface StepLookingForward {
+    text1: string;
+    text2: string;
+}
+
 const HomePage = () => {
     const [currentStep, setCurrentStep] = useState(0);
     const [showFinalMessage, setShowFinalMessage] = useState(false);
+    const [selectedValues, setSelectedValues] = useState<SelectedValues>({
+        workPreference: '',
+        availability: '',
+        experience: '',
+        speaking: '',
+    });
     const [formValues, setFormValues] = useState<FormValues>({
         name: '',
         email: '',
@@ -28,16 +47,29 @@ const HomePage = () => {
         text2: 'Möchtest Du lieber in Teil- oder in Vollzeit arbeiten?'
     }
 
+    const stepLookingForwardText: StepLookingForward = {
+        text1: 'What are you looking forward to the most?',
+        text2: '(multiple selection possible)'
+    }
 
-    const steps: (string | Step1Text)[] = [
+    const steps: (string | Step1Text | StepLookingForward)[] = [
         step1Text,
         'Do you have a completed education as an MFA?',
-        'Address',
+        'How many years of professional experience do you bring?',
+        'How would you judge your German skills in written and spoken?',
+        stepLookingForwardText,
         'Review',
     ];
 
-    const handleNext = () => {
-        if (currentStep < steps.length - 1) setCurrentStep(currentStep + 1);
+    const handleNext = (field: string, value: string) => {
+        setSelectedValues((prev) => ({ ...prev, [field]: value }));
+        setCurrentStep((prevStep) => prevStep + 1);
+    };
+
+    const handleReviewResults = (field: string, value: string) => {
+        setSelectedValues((prev) => ({ ...prev, [field]: value }));
+        setCurrentStep((prevStep) => prevStep + 1);
+        // You can add final logic here if needed
     };
 
     const handleBack = () => {
@@ -60,16 +92,31 @@ const HomePage = () => {
     const renderStepTitle = () => {
         const step = steps[currentStep];
         if (typeof step === 'string') {
-            return <div>
-                <h1 className="text-xl lg:text-3xl font-bold text-[#20659a]">{step}</h1>
-            </div>;
-        } else {
             return (
-                <div className="space-y-6">
-                    <h1 className="text-xl lg:text-3xl font-bold text-[#20659a]">{step.text1}</h1>
-                    <p className="text-xl lg:text-3xl font-bold text-[#20659a]">{step.text2}</p>
+                <div>
+                    <h1 className="text-xl lg:text-3xl font-bold text-[#20659a] text-center max-w-3xl">
+                        {step}
+                    </h1>
                 </div>
             );
+        } else if ('text1' in step && 'text2' in step) {
+            if ('text1' in step && step.text2 === 'Möchtest Du lieber in Teil- oder in Vollzeit arbeiten?') {
+                return (
+                    <div className="space-y-6">
+                        <h1 className="text-xl lg:text-3xl font-bold text-[#20659a]">{step.text1}</h1>
+                        <p className="text-lg lg:text-xl text-[#20659a]">{step.text2}</p> {/* Style specific to Step1Text */}
+                    </div>
+                );
+            } else {
+                return (
+                    <div className="space-y-6">
+                        <h1 className="text-xl lg:text-3xl font-bold text-[#20659a]">{step.text1}</h1>
+                        <p className="text-xl text-black">{step.text2}</p> {/* Style specific to StepLookingForward */}
+                    </div>
+                );
+            }
+        } else {
+            return null;
         }
     };
 
@@ -80,10 +127,10 @@ const HomePage = () => {
             case 0:
                 return (
                     <div className="space-y-2">
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleNext}>
+                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('workPreference', 'Part time')}>
                             <h1 className="text-[#20659a] text-xl font-normal">Part time</h1>
                         </div>
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleNext}>
+                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('workPreference', 'Full time')}>
                             <h1 className="text-[#20659a] text-xl font-normal">Full time</h1>
                         </div>
 
@@ -92,7 +139,7 @@ const HomePage = () => {
             case 1:
                 return (
                     <div className="space-y-2">
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleNext}>
+                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('availability', '✔️ Yes! of course')}>
                             <h1 className="text-[#20659a] text-xl font-normal">✔️ Yes! ofcourse</h1>
                         </div>
                         <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}>
@@ -103,31 +150,56 @@ const HomePage = () => {
                 );
             case 2:
                 return (
-                    <div>
-                        <label>
-                            Address:
-                            <input
-                                type="text"
-                                name="address"
-                                value={formValues.address}
-                                onChange={handleChange}
-                                className="border p-2 w-full mt-2"
-                            />
-                        </label>
+                    <div className="space-y-2">
+                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}>
+                            <h1 className="text-[#20659a] text-xl font-normal">1-4 Years</h1>
+                        </div>
+                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('experience', '5-10 Years')}>
+                            <h1 className="text-[#20659a] text-xl font-normal">5-10 Years</h1>
+                        </div>
+                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('experience', '11-15 Years')}>
+                            <h1 className="text-[#20659a] text-xl font-normal">11-15 Years</h1>
+                        </div>
+                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('experience', '16 and more Years')}>
+                            <h1 className="text-[#20659a] text-xl font-normal">16 and more Years</h1>
+                        </div>
                     </div>
                 );
             case 3:
                 return (
+                    <div className="space-y-2">
+                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('speaking', 'Mother Speaking')}>
+                            <h1 className="text-[#20659a] text-xl font-normal">Mother Speaking</h1>
+                        </div>
+                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('speaking', 'Flowing')}>
+                            <h1 className="text-[#20659a] text-xl font-normal">Flowing</h1>
+                        </div>
+                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}>
+                            <h1 className="text-[#20659a] text-xl font-normal">Negotiating safe</h1>
+                        </div>
+                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}>
+                            <h1 className="text-[#20659a] text-xl font-normal">Basic Knowledge</h1>
+                        </div>
+                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}>
+                            <h1 className="text-[#20659a] text-xl font-normal">I dont know basic german</h1>
+                        </div>
+                    </div>
+                );
+            case 4:
+                return (
                     <div>
-                        <h2>Review Your Details</h2>
+                        <h2 className="text-xl font-bold mb-4">Review Your Details</h2>
                         <p>
-                            <strong>Name:</strong> {formValues.name}
+                            <strong>Work Preference:</strong> {selectedValues.workPreference}
                         </p>
                         <p>
-                            <strong>Email:</strong> {formValues.email}
+                            <strong>Availability:</strong> {selectedValues.availability}
                         </p>
                         <p>
-                            <strong>Address:</strong> {formValues.address}
+                            <strong>Experience:</strong> {selectedValues.experience}
+                        </p>
+                        <p>
+                            <strong>Speaking:</strong> {selectedValues.speaking}
                         </p>
                     </div>
                 );
