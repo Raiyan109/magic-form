@@ -8,6 +8,7 @@ import { RainbowButton } from "../ui/rainbow-button";
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import { motion } from "motion/react"
+import finalImg from '@/assets/magic form final message image.jpg'
 
 type CountryCode = 'us' | 'bd' | 'ca' | 'de' | 'fr' | string;
 
@@ -134,7 +135,7 @@ const HomePage = () => {
         stepLookingForwardText,
         stepLastQuestionText,
         stepContactInfoText,
-        'Review',
+        'Vielen Dank für Deine Bewerbung. Wir freuen uns darauf Dich kennenzulernen.',
     ];
 
     const handleNext = (field: string, value: string[] | string) => {
@@ -251,67 +252,96 @@ const HomePage = () => {
             case 1:
                 return (
                     <div className="space-y-2">
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('availability', '✔️ Yes! of course')}>
+                        <AnimatedButton onClick={() => handleNext('availability', '✔️ Yes! of course')}>
                             <h1 className="text-[#20659a] text-xl font-normal">✔️ Yes! ofcourse</h1>
-                        </div>
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}>
+                        </AnimatedButton>
+                        <motion.div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
+                            whileTap={{
+                                scale: 0.9,
+                                transition: { type: 'spring', stiffness: 500, damping: 30 },
+                            }}
+                        >
                             <h1 className="text-[#20659a] text-xl font-normal">❌ Unfortunately not</h1>
-                        </div>
+                        </motion.div>
 
                     </div>
                 );
             case 2:
                 return (
                     <div className="space-y-2">
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}>
+                        <motion.div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
+                            whileTap={{
+                                scale: 0.9,
+                                transition: { type: 'spring', stiffness: 500, damping: 30 },
+                            }}
+                        >
                             <h1 className="text-[#20659a] text-xl font-normal">1-4 Years</h1>
-                        </div>
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('experience', '5-10 Years')}>
+                        </motion.div>
+                        <AnimatedButton onClick={() => handleNext('experience', '5-10 Years')}>
                             <h1 className="text-[#20659a] text-xl font-normal">5-10 Years</h1>
-                        </div>
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('experience', '11-15 Years')}>
+                        </AnimatedButton>
+                        <AnimatedButton onClick={() => handleNext('experience', '11-15 Years')}>
                             <h1 className="text-[#20659a] text-xl font-normal">11-15 Years</h1>
-                        </div>
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('experience', '16 and more Years')}>
+                        </AnimatedButton>
+                        <AnimatedButton onClick={() => handleNext('experience', '16 and more Years')}>
                             <h1 className="text-[#20659a] text-xl font-normal">16 and more Years</h1>
-                        </div>
+                        </AnimatedButton>
                     </div>
                 );
             case 3:
                 return (
                     <div className="space-y-2">
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('speaking', 'Mother Speaking')}>
+                        <AnimatedButton onClick={() => handleNext('speaking', 'Mother Speaking')}>
                             <h1 className="text-[#20659a] text-xl font-normal">Mother Speaking</h1>
-                        </div>
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('speaking', 'Flowing')}>
+                        </AnimatedButton>
+                        <AnimatedButton onClick={() => handleNext('speaking', 'Flowing')}>
                             <h1 className="text-[#20659a] text-xl font-normal">Flowing</h1>
-                        </div>
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}>
+                        </AnimatedButton>
+                        <motion.div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
+                            whileTap={{
+                                scale: 0.9,
+                                transition: { type: 'spring', stiffness: 500, damping: 30 },
+                            }}
+                        >
                             <h1 className="text-[#20659a] text-xl font-normal">Negotiating safe</h1>
-                        </div>
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}>
+                        </motion.div>
+                        <motion.div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
+                            whileTap={{
+                                scale: 0.9,
+                                transition: { type: 'spring', stiffness: 500, damping: 30 },
+                            }}
+                        >
                             <h1 className="text-[#20659a] text-xl font-normal">Basic Knowledge</h1>
-                        </div>
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}>
+                        </motion.div>
+                        <motion.div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
+                            whileTap={{
+                                scale: 0.9,
+                                transition: { type: 'spring', stiffness: 500, damping: 30 },
+                            }}
+                        >
                             <h1 className="text-[#20659a] text-xl font-normal">I dont know basic german</h1>
-                        </div>
+                        </motion.div>
                     </div>
                 );
             case 4:
                 return (
                     <div className="space-y-2">
                         {['Above average remuneration', '30 days holiday', '3 free afternoons', 'Great advancement', 'A family team'].map((option) => (
-                            <div
+                            <motion.div
                                 key={option}
                                 className={`w-full h-14 border ${lookingForwardOptions.includes(option)
                                     ? 'bg-[#20659a] text-white' // Selected state
                                     : 'bg-[#f0f8fd] text-[#20659a]' // Default state
                                     } rounded flex items-center justify-start gap-5 pl-5 cursor-pointer`}
                                 onClick={() => toggleLookingForwardOption(option)}
+                                whileTap={{
+                                    scale: 0.9,
+                                    transition: { type: 'spring', stiffness: 500, damping: 30 },
+                                }}
                             >
                                 {option === 'Above average remuneration' ? <BadgeEuro fill="#f0e2c0" color="#f0b728" size={25} /> : option === '30 days holiday' ? <Flag color="#20659a" size={25} /> : option === '3 free afternoons' ? <History color="gray" size={25} /> : option === 'Great advancement' ? <BookText color="brown" size={25} /> : <Users color="purple" size={25} />}
                                 <h1 className=" text-xl font-normal">{option}</h1>
-                            </div>
+                            </motion.div>
                         ))}
                         <RainbowButton
                             onClick={() => handleNext('lookingForward', lookingForwardOptions)}
@@ -326,18 +356,18 @@ const HomePage = () => {
             case 5:
                 return (
                     <div className="space-y-2">
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('time', 'Zwischen 8-12 Uhr. ')}>
+                        <AnimatedButton onClick={() => handleNext('time', 'Zwischen 8-12 Uhr. ')}>
                             <h1 className="text-[#20659a] text-xl font-normal">Zwischen 8-12 Uhr. </h1>
-                        </div>
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('time', 'Zwischen 12- 14 Uhr. ')}>
+                        </AnimatedButton>
+                        <AnimatedButton onClick={() => handleNext('time', 'Zwischen 12- 14 Uhr. ')}>
                             <h1 className="text-[#20659a] text-xl font-normal">Zwischen 12- 14 Uhr. </h1>
-                        </div>
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('time', 'Zwischen 14 - 17 Uhr. ')}>
+                        </AnimatedButton>
+                        <AnimatedButton onClick={() => handleNext('time', 'Zwischen 14 - 17 Uhr. ')}>
                             <h1 className="text-[#20659a] text-xl font-normal">Zwischen 14 - 17 Uhr. </h1>
-                        </div>
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('time', 'Zwischen 17 - 19 Uhr.')}>
+                        </AnimatedButton>
+                        <AnimatedButton onClick={() => handleNext('time', 'Zwischen 17 - 19 Uhr.')}>
                             <h1 className="text-[#20659a] text-xl font-normal">Zwischen 17 - 19 Uhr. </h1>
-                        </div>
+                        </AnimatedButton>
                     </div>
                 );
             case 6:
@@ -376,28 +406,27 @@ const HomePage = () => {
                 );
             case 7:
                 return (
-                    <div>
-                        <h2 className="text-xl font-bold mb-4">Review Your Details</h2>
-                        <p>
-                            <strong>Work Preference:</strong> {selectedValues.workPreference}
-                        </p>
-                        <p>
-                            <strong>Availability:</strong> {selectedValues.availability}
-                        </p>
-                        <p>
-                            <strong>Experience:</strong> {selectedValues.experience}
-                        </p>
-                        <p>
-                            <strong>Speaking:</strong> {selectedValues.speaking}
-                        </p>
-                        <p>
-                            <strong>Looking Forward:</strong> {selectedValues.lookingForward.map((el) => (
-                                <p>{el}</p>
-                            ))}
-                        </p>
-                        <p>
-                            <strong>Time:</strong> {selectedValues.time}
-                        </p>
+                    <div className="flex flex-col items-center justify-center">
+                        <div
+                            className="relative flex h-full w-full flex-col items-center justify-center gap-10 overflow-hidden rounded-lg  py-10"
+
+                        >
+                            <div className="space-y-6">
+                                {/* <h1 className="text-xl lg:text-3xl font-bold text-[#20659a]">Vielen Dank für Deine Bewerbung. Wir freuen uns darauf Dich kennenzulernen.</h1> */}
+                                <p className="text-xl text-black">So geht es jetzt weiter: </p>
+                                <p className="text-xl text-black">Wir sehen uns Deine Bewerbung an und melden uns innerhalb der nächsten 48 Stunden telefonisch bei Dir. </p>
+                                <p className="text-xl text-black">Speicher Dir dafür gerne schon einmal die folgenden Nummern ein, denn unter einer der drei werden wir Dich kontaktieren:</p>
+                                <p className="text-xl text-black">+49 151 51589830</p>
+                                <p className="text-xl text-black">+49 151 25006663</p>
+                                <p className="text-xl text-black">+49 160 96703175</p>
+                                <p className="text-xl text-black">Gemeinsam vereinbaren wir einen Termin für ein unverbindliches Kennenlerngespräch. </p>
+                                <p className="text-xl text-black">Beim Kennenlernen kannst uns alle Fragen stellen, die Du gerne beantwortet haben möchtest.
+                                </p>
+                                <p className="text-xl text-black">Deine Ansprechpartnerin:</p>
+                                <p className="text-xl text-black">Jasemin Bergmann</p>
+                            </div>
+                            <img src={finalImg} alt="" className="w-[684px] h-[584px] object-contain" />
+                        </div>
                     </div>
                 );
             default:
@@ -409,12 +438,12 @@ const HomePage = () => {
             {showFinalMessage ? <FinalMessage /> : (
                 <div>
                     <ShineBorder
-                        className="relative flex h-[800px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border  md:shadow-xl "
+                        className="relative flex  w-full flex-col items-center justify-center overflow-hidden rounded-lg border  md:shadow-xl "
                         color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
                     >
                         <div className="">
                             {/* p-5 border rounded-md max-w-md mx-auto */}
-                            {renderStepTitle()}
+                            <h1 className="text-center">{renderStepTitle()}</h1>
                             <div className="mt-5">{renderStepContent()}</div>
                             {/* <div className="flex justify-between mt-5">
                                 <button
