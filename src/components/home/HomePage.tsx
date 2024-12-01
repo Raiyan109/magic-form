@@ -432,7 +432,7 @@ const HomePage = () => {
             {showFinalMessage ? <FinalMessage /> : (
                 <div>
                     <ShineBorder
-                        className="relative flex  w-full flex-col items-center justify-center overflow-hidden rounded-lg border  md:shadow-xl "
+                        className="relative flex py-32 w-full flex-col items-center justify-center overflow-hidden rounded-lg border  md:shadow-xl "
                         color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
                     >
                         <div className="">
