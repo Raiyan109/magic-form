@@ -1,8 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-constant-condition */
 import ShineBorder from "@/components/ui/shine-border";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FinalMessage from "./FinalMessage";
 import { BadgeEuro, BookText, Flag, History, Users } from "lucide-react";
 import { RainbowButton } from "../ui/rainbow-button";
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
+
+type CountryCode = 'us' | 'bd' | 'ca' | 'de' | 'fr' | string;
 
 interface FormValues {
     name: string;
@@ -17,17 +23,15 @@ interface SelectedValues {
     experience: string;
     speaking: string;
     lookingForward: string[];
+    time: string;
 }
 
-interface Step1Text {
+interface StepText {
     text1: string;
     text2: string;
+    text3?: string;
 }
 
-interface StepLookingForward {
-    text1: string;
-    text2: string;
-}
 
 const HomePage = () => {
     const [currentStep, setCurrentStep] = useState(0);
@@ -38,8 +42,12 @@ const HomePage = () => {
         experience: '',
         speaking: '',
         lookingForward: [],
+        time: '',
     });
     const [lookingForwardOptions, setLookingForwardOptions] = useState<string[]>([]);
+    const [countryCode, setCountryCode] = useState<CountryCode | undefined>('bd');
+    const [ipAddress, setIpAddress] = useState('103.204.211.42');
+    const [phone, setPhone] = useState()
     const [formValues, setFormValues] = useState<FormValues>({
         name: '',
         email: '',
@@ -47,35 +55,92 @@ const HomePage = () => {
         address: '',
     });
 
-    const step1Text: Step1Text = {
+    // Fetch user IP address
+    useEffect(() => {
+        const fetchUserIPAddress = async () => {
+            try {
+                const response = await fetch('https://api.ipify.org/?format=json');
+
+                const data = await response.json();
+                setIpAddress(data.ip);
+            } catch (error) {
+                console.error('Error fetching ip address:', error);
+                // Default to Bangladesh if API fails
+                setIpAddress('103.204.211.42');
+            }
+        };
+        fetchUserIPAddress();
+    }, []);
+
+
+    // Fetch user's country code based on IP
+    useEffect(() => {
+        const fetchUserCountry = async () => {
+            try {
+                const response = await fetch(`https://ipapi.co/${ipAddress}/json/`);
+                // const response = await fetch('https://ipapi.co/json/'); 
+                const data = await response.json();
+                setCountryCode(data.country_code.toLowerCase() as CountryCode);
+                // setCountryCode(data.country_code.toLowerCase());
+            } catch (error) {
+                console.error('Error fetching geolocation data:', error);
+                // Default to Bangladesh if API fails
+                setCountryCode('bd');
+            }
+        };
+        fetchUserCountry();
+    }, [ipAddress]);
+
+    console.log(phone);
+
+    const handlePhoneChange = (value?: string) => {
+        console.log('Phone number:', value);
+        setPhone(phone);
+    };
+
+
+    const step1Text: StepText = {
         text1: 'Los geht´s mit der ersten Frage!',
         text2: 'Möchtest Du lieber in Teil- oder in Vollzeit arbeiten?'
     }
 
-    const stepLookingForwardText: StepLookingForward = {
-        text1: 'What are you looking forward to the most?',
-        text2: '(multiple selection possible)'
+    const stepLookingForwardText: StepText = {
+        text1: '✅ Worauf freust Du Dich am meisten?',
+        text2: '(Mehrfachauswahl möglich)'
     }
 
-    const steps: (string | Step1Text | StepLookingForward)[] = [
+    const stepLastQuestionText: StepText = {
+        text1: 'Fast geschafft: Letzte Frage!',
+        text2: 'Wann können wir Dich am besten erreichen?'
+    }
+
+    const stepContactInfoText: StepText = {
+        text1: 'Glückwunsch! Du passt super in unser Praxisteam! 🎉',
+        text2: 'Nun würden wir Dich gern unverbindlich kennenlernen:',
+        text3: 'Wie können wir Dich am besten erreichen?'
+    }
+
+    const steps: (string | StepText | StepText)[] = [
         step1Text,
-        'Do you have a completed education as an MFA?',
-        'How many years of professional experience do you bring?',
-        'How would you judge your German skills in written and spoken?',
+        'Hast Du eine abgeschlossene Ausbildung als MFA?',
+        'Wieviele Jahre Berufserfahrung bringst Du mit?',
+        'Wie würdest Du Deine Deutsch-Kenntnisse in Wort und Schrift beurteilen?',
         stepLookingForwardText,
+        stepLastQuestionText,
+        stepContactInfoText,
         'Review',
     ];
 
-    const handleNext = (field: string, value: string[]) => {
+    const handleNext = (field: string, value: string[] | string) => {
         setSelectedValues((prev) => ({ ...prev, [field]: value }));
         setCurrentStep((prevStep) => prevStep + 1);
     };
 
-    const handleReviewResults = (field: string, value: string) => {
-        setSelectedValues((prev) => ({ ...prev, [field]: value }));
-        setCurrentStep((prevStep) => prevStep + 1);
-        // You can add final logic here if needed
-    };
+    // const handleReviewResults = (field: string, value: string) => {
+    //     setSelectedValues((prev) => ({ ...prev, [field]: value }));
+    //     setCurrentStep((prevStep) => prevStep + 1);
+
+    // };
 
     const handleBack = () => {
         if (currentStep > 0) setCurrentStep(currentStep - 1);
@@ -93,10 +158,10 @@ const HomePage = () => {
         );
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormValues({ ...formValues, [name]: value });
-    };
+    // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const { name, value } = e.target;
+    //     setFormValues({ ...formValues, [name]: value });
+    // };
 
     const handleSubmit = () => {
         alert('Form submitted: ' + JSON.stringify(formValues));
@@ -113,18 +178,20 @@ const HomePage = () => {
                 </div>
             );
         } else if ('text1' in step && 'text2' in step) {
-            if ('text1' in step && step.text2 === 'Möchtest Du lieber in Teil- oder in Vollzeit arbeiten?') {
+            if ('text1' in step && step.text2 === '(Mehrfachauswahl möglich)' || 'Nun würden wir Dich gern unverbindlich kennenlernen:') {
                 return (
                     <div className="space-y-6">
                         <h1 className="text-xl lg:text-3xl font-bold text-[#20659a]">{step.text1}</h1>
-                        <p className="text-lg lg:text-xl text-[#20659a]">{step.text2}</p> {/* Style specific to Step1Text */}
+                        <p className="text-xl text-black">{step.text2}</p>
+                        <p className="text-xl text-black">{step.text3}</p>
                     </div>
+
                 );
             } else {
                 return (
                     <div className="space-y-6">
                         <h1 className="text-xl lg:text-3xl font-bold text-[#20659a]">{step.text1}</h1>
-                        <p className="text-xl text-black">{step.text2}</p> {/* Style specific to StepLookingForward */}
+                        <p className="text-lg lg:text-xl text-[#20659a]">{step.text2}</p>
                     </div>
                 );
             }
@@ -226,6 +293,57 @@ const HomePage = () => {
                 );
             case 5:
                 return (
+                    <div className="space-y-2">
+                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('time', 'Zwischen 8-12 Uhr. ')}>
+                            <h1 className="text-[#20659a] text-xl font-normal">Zwischen 8-12 Uhr. </h1>
+                        </div>
+                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('time', 'Zwischen 12- 14 Uhr. ')}>
+                            <h1 className="text-[#20659a] text-xl font-normal">Zwischen 12- 14 Uhr. </h1>
+                        </div>
+                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('time', 'Zwischen 14 - 17 Uhr. ')}>
+                            <h1 className="text-[#20659a] text-xl font-normal">Zwischen 14 - 17 Uhr. </h1>
+                        </div>
+                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('time', 'Zwischen 17 - 19 Uhr.')}>
+                            <h1 className="text-[#20659a] text-xl font-normal">Zwischen 17 - 19 Uhr. </h1>
+                        </div>
+                    </div>
+                );
+            case 6:
+                return (
+                    <div className="space-y-3">
+                        <div className="relative">
+                            <input type="text" className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-20 text-2xl" placeholder="Dein Voller Name *" />
+                            <p className="absolute top-5 left-5 text-2xl">👋</p>
+                        </div>
+                        <div className="relative">
+                            <input type="text" className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-20 text-2xl" placeholder="Deine E-mail Adresse *" />
+                            <p className="absolute top-5 left-5 text-2xl">📧</p>
+                        </div>
+                        <div className="relative">
+                            {/* <input type="text" className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-20 text-2xl" placeholder="Dein Voller Name *" />
+                            <p className="absolute top-5 left-5 text-2xl">👋</p> */}
+                            <PhoneInput
+                                className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-3 text-2xl"
+                                placeholder="Dein Voller Name *"
+                                value={phone}
+                                onChange={handlePhoneChange}
+                                country={countryCode}
+                            />
+                            {/* <p className="absolute top-5 left-5 text-2xl">👋</p> */}
+                        </div>
+                        <p className="text-lg lg:text-xl text-[#20659a] max-w-2xl">🔒  100% sichere Datenverbindung mit SSL. Wir respektieren Deine Privatsphäre.</p>
+                        <RainbowButton
+                            onClick={() => handleNext('lookingForward', lookingForwardOptions)}
+                            // className={`w-full h-14 mt-4 rounded bg-[#20659a] text-white font-bold ${lookingForwardOptions.length === 0 ? 'opacity-50 cursor-not-allowed' : ''
+                            //     }`}
+                            disabled={lookingForwardOptions.length === 0}
+                        >
+                            Jetzt unverbindliches Kennenlerngespräch vereinbaren! 📩
+                        </RainbowButton>
+                    </div>
+                );
+            case 7:
+                return (
                     <div>
                         <h2 className="text-xl font-bold mb-4">Review Your Details</h2>
                         <p>
@@ -244,6 +362,9 @@ const HomePage = () => {
                             <strong>Looking Forward:</strong> {selectedValues.lookingForward.map((el) => (
                                 <p>{el}</p>
                             ))}
+                        </p>
+                        <p>
+                            <strong>Time:</strong> {selectedValues.time}
                         </p>
                     </div>
                 );
@@ -273,7 +394,7 @@ const HomePage = () => {
                                 </button>
                                 {currentStep < steps.length - 1 ? (
                                     <button
-                                        onClick={handleNext}
+                                        // onClick={handleNext}
                                         className="bg-blue-500 text-white px-4 py-2 rounded-md"
                                     >
                                         Next
