@@ -48,7 +48,7 @@ const HomePage = () => {
     const [countryCode, setCountryCode] = useState<CountryCode | undefined>('bd');
     const [ipAddress, setIpAddress] = useState('103.204.211.42');
     const [phone, setPhone] = useState()
-    const [formValues, setFormValues] = useState<FormValues>({
+    const [formValues] = useState<FormValues>({
         name: '',
         email: '',
         age: '',
