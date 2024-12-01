@@ -1,6 +1,8 @@
 import ShineBorder from "@/components/ui/shine-border";
 import { useState } from "react";
 import FinalMessage from "./FinalMessage";
+import { BadgeEuro, BookText, Flag, History, Users } from "lucide-react";
+import { RainbowButton } from "../ui/rainbow-button";
 
 interface FormValues {
     name: string;
@@ -14,6 +16,7 @@ interface SelectedValues {
     availability: string;
     experience: string;
     speaking: string;
+    lookingForward: string[];
 }
 
 interface Step1Text {
@@ -34,7 +37,9 @@ const HomePage = () => {
         availability: '',
         experience: '',
         speaking: '',
+        lookingForward: [],
     });
+    const [lookingForwardOptions, setLookingForwardOptions] = useState<string[]>([]);
     const [formValues, setFormValues] = useState<FormValues>({
         name: '',
         email: '',
@@ -61,7 +66,7 @@ const HomePage = () => {
         'Review',
     ];
 
-    const handleNext = (field: string, value: string) => {
+    const handleNext = (field: string, value: string[]) => {
         setSelectedValues((prev) => ({ ...prev, [field]: value }));
         setCurrentStep((prevStep) => prevStep + 1);
     };
@@ -78,6 +83,14 @@ const HomePage = () => {
 
     const handleFinalMessage = () => {
         setShowFinalMessage(true); // Show the final message
+    };
+
+    const toggleLookingForwardOption = (option: string) => {
+        setLookingForwardOptions((prev) =>
+            prev.includes(option)
+                ? prev.filter((item) => item !== option) // Remove if already selected
+                : [...prev, option] // Add if not selected
+        );
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -187,6 +200,32 @@ const HomePage = () => {
                 );
             case 4:
                 return (
+                    <div className="space-y-2">
+                        {['Above average remuneration', '30 days holiday', '3 free afternoons', 'Great advancement', 'A family team'].map((option) => (
+                            <div
+                                key={option}
+                                className={`w-full h-14 border ${lookingForwardOptions.includes(option)
+                                    ? 'bg-[#20659a] text-white' // Selected state
+                                    : 'bg-[#f0f8fd] text-[#20659a]' // Default state
+                                    } rounded flex items-center justify-start gap-5 pl-5 cursor-pointer`}
+                                onClick={() => toggleLookingForwardOption(option)}
+                            >
+                                {option === 'Above average remuneration' ? <BadgeEuro fill="#f0e2c0" color="#f0b728" size={25} /> : option === '30 days holiday' ? <Flag color="#20659a" size={25} /> : option === '3 free afternoons' ? <History color="gray" size={25} /> : option === 'Great advancement' ? <BookText color="brown" size={25} /> : <Users color="purple" size={25} />}
+                                <h1 className=" text-xl font-normal">{option}</h1>
+                            </div>
+                        ))}
+                        <RainbowButton
+                            onClick={() => handleNext('lookingForward', lookingForwardOptions)}
+                            // className={`w-full h-14 mt-4 rounded bg-[#20659a] text-white font-bold ${lookingForwardOptions.length === 0 ? 'opacity-50 cursor-not-allowed' : ''
+                            //     }`}
+                            disabled={lookingForwardOptions.length === 0}
+                        >
+                            On The Last Question
+                        </RainbowButton>
+                    </div>
+                );
+            case 5:
+                return (
                     <div>
                         <h2 className="text-xl font-bold mb-4">Review Your Details</h2>
                         <p>
@@ -201,6 +240,11 @@ const HomePage = () => {
                         <p>
                             <strong>Speaking:</strong> {selectedValues.speaking}
                         </p>
+                        <p>
+                            <strong>Looking Forward:</strong> {selectedValues.lookingForward.map((el) => (
+                                <p>{el}</p>
+                            ))}
+                        </p>
                     </div>
                 );
             default:
@@ -212,7 +256,7 @@ const HomePage = () => {
             {showFinalMessage ? <FinalMessage /> : (
                 <div>
                     <ShineBorder
-                        className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border  md:shadow-xl "
+                        className="relative flex h-[800px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border  md:shadow-xl "
                         color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
                     >
                         <div className="">

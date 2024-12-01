@@ -1,12 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
-    --radius: 0.5rem
+    --radius: 0.5rem;
+    --color-1: 0 100% 63%;
+    --color-2: 270 100% 63%;
+    --color-3: 210 100% 63%;
+    --color-4: 195 100% 63%;
+    --color-5: 90 100% 63%
+  }
+
+  .dark {
+    --color-1: 0 100% 63%;
+    --color-2: 270 100% 63%;
+    --color-3: 210 100% 63%;
+    --color-4: 195 100% 63%;
+    --color-5: 90 100% 63%
   }
 }
-body{
+
+body {
   width: 100%;
   height: 100%;
   /* Add your background pattern here */
@@ -14,6 +29,10 @@ body{
   background-image: radial-gradient(rgba(12, 12, 12, 0.171) 2px, transparent 0);
   background-size: 30px 30px;
   background-position: -5px -5px;
+}
+
+.lookingForwardHighlightedText {
+  color: #ffffff !important;
 }
 
 .shine-container {
