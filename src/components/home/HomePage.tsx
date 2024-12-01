@@ -12,12 +12,12 @@ import finalImg from '@/assets/magic form final message image.jpg'
 
 type CountryCode = 'us' | 'bd' | 'ca' | 'de' | 'fr' | string;
 
-interface FormValues {
-    name: string;
-    email: string;
-    age: string;
-    address: string;
-}
+// interface FormValues {
+//     name: string;
+//     email: string;
+//     age: string;
+//     address: string;
+// }
 
 interface SelectedValues {
     workPreference: string;
@@ -43,7 +43,7 @@ interface AnimatedButtonProps {
 const HomePage = () => {
     const [currentStep, setCurrentStep] = useState(0);
     const [showFinalMessage, setShowFinalMessage] = useState(false);
-    const [selectedValues, setSelectedValues] = useState<SelectedValues>({
+    const [, setSelectedValues] = useState<SelectedValues>({
         workPreference: '',
         availability: '',
         experience: '',
@@ -55,13 +55,13 @@ const HomePage = () => {
     const [countryCode, setCountryCode] = useState<CountryCode | undefined>('bd');
     const [ipAddress, setIpAddress] = useState('103.204.211.42');
     const [phone, setPhone] = useState()
-    const [isDelay, setIsDelay] = useState(false);
-    const [formValues] = useState<FormValues>({
-        name: '',
-        email: '',
-        age: '',
-        address: '',
-    });
+    // const [isDelay, setIsDelay] = useState(false);
+    // const [formValues] = useState<FormValues>({
+    //     name: '',
+    //     email: '',
+    //     age: '',
+    //     address: '',
+    // });
 
     // Fetch user IP address
     useEffect(() => {
@@ -174,9 +174,6 @@ const HomePage = () => {
 
     // };
 
-    const handleBack = () => {
-        if (currentStep > 0) setCurrentStep(currentStep - 1);
-    };
 
     const handleFinalMessage = () => {
         setShowFinalMessage(true); // Show the final message
@@ -195,9 +192,6 @@ const HomePage = () => {
     //     setFormValues({ ...formValues, [name]: value });
     // };
 
-    const handleSubmit = () => {
-        alert('Form submitted: ' + JSON.stringify(formValues));
-    };
 
     const renderStepTitle = () => {
         const step = steps[currentStep];
