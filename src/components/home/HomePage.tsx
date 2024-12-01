@@ -7,6 +7,7 @@ import { BadgeEuro, BookText, Flag, History, Users } from "lucide-react";
 import { RainbowButton } from "../ui/rainbow-button";
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
+import { motion } from "motion/react"
 
 type CountryCode = 'us' | 'bd' | 'ca' | 'de' | 'fr' | string;
 
@@ -32,6 +33,11 @@ interface StepText {
     text3?: string;
 }
 
+interface AnimatedButtonProps {
+    onClick: () => void;
+    children: React.ReactNode;
+}
+
 
 const HomePage = () => {
     const [currentStep, setCurrentStep] = useState(0);
@@ -48,6 +54,7 @@ const HomePage = () => {
     const [countryCode, setCountryCode] = useState<CountryCode | undefined>('bd');
     const [ipAddress, setIpAddress] = useState('103.204.211.42');
     const [phone, setPhone] = useState()
+    const [isDelay, setIsDelay] = useState(false);
     const [formValues] = useState<FormValues>({
         name: '',
         email: '',
@@ -91,7 +98,6 @@ const HomePage = () => {
         fetchUserCountry();
     }, [ipAddress]);
 
-    console.log(phone);
 
     const handlePhoneChange = (value?: string) => {
         console.log('Phone number:', value);
@@ -134,6 +140,31 @@ const HomePage = () => {
     const handleNext = (field: string, value: string[] | string) => {
         setSelectedValues((prev) => ({ ...prev, [field]: value }));
         setCurrentStep((prevStep) => prevStep + 1);
+    };
+
+    const AnimatedButton: React.FC<AnimatedButtonProps> = ({ onClick, children }) => {
+        const [isDelay, setIsDelay] = useState(false);
+
+        const handleClick = () => {
+            if (isDelay) return;
+            setIsDelay(true);
+            onClick();
+            setTimeout(() => setIsDelay(false), 10000); // Adjust delay as needed
+        };
+
+        return (
+            <motion.div
+                className={`w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 ${isDelay ? 'cursor-wait' : 'cursor-pointer'
+                    }`}
+                onClick={handleClick}
+                whileTap={{
+                    scale: 0.9,
+                    transition: { type: 'spring', stiffness: 500, damping: 30 },
+                }}
+            >
+                {children}
+            </motion.div>
+        );
     };
 
     // const handleReviewResults = (field: string, value: string) => {
@@ -207,12 +238,13 @@ const HomePage = () => {
             case 0:
                 return (
                     <div className="space-y-2">
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('workPreference', 'Part time')}>
+                        <AnimatedButton onClick={() => handleNext('workPreference', 'Part time')}>
                             <h1 className="text-[#20659a] text-xl font-normal">Part time</h1>
-                        </div>
-                        <div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={() => handleNext('workPreference', 'Full time')}>
+                        </AnimatedButton>
+
+                        <AnimatedButton onClick={() => handleNext('workPreference', 'Full time')}>
                             <h1 className="text-[#20659a] text-xl font-normal">Full time</h1>
-                        </div>
+                        </AnimatedButton>
 
                     </div>
                 );
@@ -384,7 +416,7 @@ const HomePage = () => {
                             {/* p-5 border rounded-md max-w-md mx-auto */}
                             {renderStepTitle()}
                             <div className="mt-5">{renderStepContent()}</div>
-                            <div className="flex justify-between mt-5">
+                            {/* <div className="flex justify-between mt-5">
                                 <button
                                     onClick={handleBack}
                                     disabled={currentStep === 0}
@@ -407,7 +439,7 @@ const HomePage = () => {
                                         Submit
                                     </button>
                                 )}
-                            </div>
+                            </div> */}
                         </div>
                     </ShineBorder>
                 </div>
