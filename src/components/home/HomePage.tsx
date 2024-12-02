@@ -160,7 +160,7 @@ const HomePage = () => {
 
         return (
             <motion.div
-                className={`w-full h-14 border rounded flex items-center justify-start pl-5 ${isDelay ? 'cursor-wait' : 'cursor-pointer'
+                className={`w-full h-20 border rounded-lg flex items-center justify-start pl-5 ${isDelay ? 'cursor-wait' : 'cursor-pointer'
                     } ${isClicked ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'
                     }`}
                 onClick={handleClick}
@@ -266,12 +266,12 @@ const HomePage = () => {
             case 0:
                 return (
                     <div className="space-y-2">
-                        <AnimatedButton onClick={() => handleNext('workPreference', 'Part time')}>
-                            <h1 className="text-[#20659a] text-xl font-normal">Part time</h1>
+                        <AnimatedButton onClick={() => handleNext('workPreference', 'Teilzeit')}>
+                            <h1 className="text-[#20659a] text-2xl font-normal">Teilzeit</h1>
                         </AnimatedButton>
 
-                        <AnimatedButton onClick={() => handleNext('workPreference', 'Full time')}>
-                            <h1 className="text-[#20659a] text-xl font-normal">Full time</h1>
+                        <AnimatedButton onClick={() => handleNext('workPreference', 'Vollzeit')}>
+                            <h1 className="text-[#20659a] text-2xl font-normal">Vollzeit</h1>
                         </AnimatedButton>
 
                     </div>
@@ -279,10 +279,10 @@ const HomePage = () => {
             case 1:
                 return (
                     <div className="space-y-2">
-                        <AnimatedButton onClick={() => handleNext('availability', '✔️ Yes! of course')}>
-                            <h1 className="text-[#20659a] text-xl font-normal">✔️ Yes! ofcourse</h1>
+                        <AnimatedButton onClick={() => handleNext('availability', '✔️ Ja klar!')}>
+                            <h1 className="text-[#20659a] text-xl font-normal">✔️ Ja klar!</h1>
                         </AnimatedButton>
-                        <motion.div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
+                        <motion.div className="w-full h-20 bg-[#f0f8fd] border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -291,7 +291,7 @@ const HomePage = () => {
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
-                            <h1 className="text-[#20659a] text-xl font-normal">❌ Unfortunately not</h1>
+                            <h1 className="text-[#20659a] text-xl font-normal">❌ Leider nicht</h1>
                         </motion.div>
 
                     </div>
@@ -308,27 +308,27 @@ const HomePage = () => {
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
-                            <h1 className="text-[#20659a] text-xl font-normal">1-4 Years</h1>
+                            <h1 className="text-[#20659a] text-xl font-normal">1-4 Jahre</h1>
                         </motion.div>
-                        <AnimatedButton onClick={() => handleNext('experience', '5-10 Years')}>
-                            <h1 className="text-[#20659a] text-xl font-normal">5-10 Years</h1>
+                        <AnimatedButton onClick={() => handleNext('experience', '5-10 Jahre')}>
+                            <h1 className="text-[#20659a] text-xl font-normal">5-10 Jahre</h1>
                         </AnimatedButton>
-                        <AnimatedButton onClick={() => handleNext('experience', '11-15 Years')}>
-                            <h1 className="text-[#20659a] text-xl font-normal">11-15 Years</h1>
+                        <AnimatedButton onClick={() => handleNext('experience', '11-15 Jahre')}>
+                            <h1 className="text-[#20659a] text-xl font-normal">11-15 Jahre</h1>
                         </AnimatedButton>
-                        <AnimatedButton onClick={() => handleNext('experience', '16 and more Years')}>
-                            <h1 className="text-[#20659a] text-xl font-normal">16 and more Years</h1>
+                        <AnimatedButton onClick={() => handleNext('experience', '16 und mehr Jahre')}>
+                            <h1 className="text-[#20659a] text-xl font-normal">16 und mehr Jahre</h1>
                         </AnimatedButton>
                     </div>
                 );
             case 3:
                 return (
                     <div className="space-y-2">
-                        <AnimatedButton onClick={() => handleNext('speaking', 'Mother Speaking')}>
-                            <h1 className="text-[#20659a] text-xl font-normal">Mother Speaking</h1>
+                        <AnimatedButton onClick={() => handleNext('speaking', 'Muttersprachlich')}>
+                            <h1 className="text-[#20659a] text-xl font-normal">Muttersprachlich</h1>
                         </AnimatedButton>
-                        <AnimatedButton onClick={() => handleNext('speaking', 'Flowing')}>
-                            <h1 className="text-[#20659a] text-xl font-normal">Flowing</h1>
+                        <AnimatedButton onClick={() => handleNext('speaking', 'Fließend')}>
+                            <h1 className="text-[#20659a] text-xl font-normal">Fließend</h1>
                         </AnimatedButton>
                         <motion.div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
                             whileTap={{
@@ -339,7 +339,7 @@ const HomePage = () => {
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
-                            <h1 className="text-[#20659a] text-xl font-normal">Negotiating safe</h1>
+                            <h1 className="text-[#20659a] text-xl font-normal">Verhandlungssicher</h1>
                         </motion.div>
                         <motion.div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
                             whileTap={{
@@ -350,7 +350,7 @@ const HomePage = () => {
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
-                            <h1 className="text-[#20659a] text-xl font-normal">Basic Knowledge</h1>
+                            <h1 className="text-[#20659a] text-xl font-normal">Grundkenntnisse</h1>
                         </motion.div>
                         <motion.div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
                             whileTap={{
@@ -361,7 +361,7 @@ const HomePage = () => {
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
-                            <h1 className="text-[#20659a] text-xl font-normal">I dont know basic german</h1>
+                            <h1 className="text-[#20659a] text-xl font-normal">Ich spreche kein deutsch / I don't speak german</h1>
                         </motion.div>
                     </div>
                 );
@@ -369,7 +369,7 @@ const HomePage = () => {
                 return (
                     <div className="space-y-8">
                         <div className="space-y-2">
-                            {['Above average remuneration', '30 days holiday', '3 free afternoons', 'Great advancement', 'A family team'].map((option) => (
+                            {['Überdurchschnittliche Vergütung zzgl. Boni', '30 Tage Urlaub', '3 freie Nachmittage und die Option auf eine 4 Tage Woche', 'Tolle Fort- und Weiterbildungsmöglichkeiten', 'Ein familiäres Team, in dem Deine Leistungen wertgeschätzt werden'].map((option) => (
                                 <motion.div
                                     key={option}
                                     className={`w-full h-14 border ${lookingForwardOptions.includes(option)
@@ -385,7 +385,7 @@ const HomePage = () => {
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                                 >
-                                    {option === 'Above average remuneration' ? <BadgeEuro fill="#f0e2c0" color="#f0b728" size={25} /> : option === '30 days holiday' ? <Flag color="#20659a" size={25} /> : option === '3 free afternoons' ? <History color="gray" size={25} /> : option === 'Great advancement' ? <BookText color="brown" size={25} /> : <Users color="purple" size={25} />}
+                                    {option === 'Überdurchschnittliche Vergütung zzgl. Boni' ? <BadgeEuro fill="#f0e2c0" color="#f0b728" size={25} /> : option === '30 Tage Urlaub' ? <Flag color="#20659a" size={25} /> : option === '3 freie Nachmittage und die Option auf eine 4 Tage Woche' ? <History color="gray" size={25} /> : option === 'Tolle Fort- und Weiterbildungsmöglichkeiten' ? <BookText color="brown" size={25} /> : <Users color="purple" size={25} />}
                                     <h1 className=" text-xl font-normal">{option}</h1>
                                 </motion.div>
                             ))}
@@ -420,30 +420,33 @@ const HomePage = () => {
                 );
             case 6:
                 return (
-                    <div className="space-y-3">
-                        <div className="relative">
-                            <input type="text" className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-20 text-2xl" placeholder="Dein Voller Name *" />
-                            <p className="absolute top-5 left-5 text-2xl">👋</p>
-                        </div>
-                        <div className="relative">
-                            <input type="text" className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-20 text-2xl" placeholder="Deine E-mail Adresse *" />
-                            <p className="absolute top-5 left-5 text-2xl">📧</p>
-                        </div>
-                        <div className="relative">
-                            {/* <input type="text" className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-20 text-2xl" placeholder="Dein Voller Name *" />
+                    <div className="space-y-12">
+                        <div className="space-y-2">
+                            <div className="relative">
+                                <input type="text" className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-20 text-2xl" placeholder="Dein Voller Name *" />
+                                <p className="absolute top-5 left-5 text-2xl">👋</p>
+                            </div>
+                            <div className="relative">
+                                <input type="text" className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-20 text-2xl" placeholder="Deine E-mail Adresse *" />
+                                <p className="absolute top-5 left-5 text-2xl">📧</p>
+                            </div>
+                            <div className="relative">
+                                {/* <input type="text" className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-20 text-2xl" placeholder="Dein Voller Name *" />
                             <p className="absolute top-5 left-5 text-2xl">👋</p> */}
-                            <PhoneInput
-                                className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-3 text-2xl"
-                                placeholder="Dein Voller Name *"
-                                value={phone}
-                                onChange={handlePhoneChange}
-                                country={countryCode}
-                            />
-                            {/* <p className="absolute top-5 left-5 text-2xl">👋</p> */}
+                                <PhoneInput
+                                    className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-3 text-2xl"
+                                    placeholder="Dein Voller Name *"
+                                    value={phone}
+                                    onChange={handlePhoneChange}
+                                    country={countryCode}
+                                />
+                                {/* <p className="absolute top-5 left-5 text-2xl">👋</p> */}
+                            </div>
                         </div>
                         <p className="text-lg lg:text-xl text-[#20659a] max-w-2xl">🔒  100% sichere Datenverbindung mit SSL. Wir respektieren Deine Privatsphäre.</p>
                         <RainbowButton
                             onClick={() => handleNext('lookingForward', lookingForwardOptions)}
+                            className="bg-[#20659a]"
                             // className={`w-full h-14 mt-4 rounded bg-[#20659a] text-white font-bold ${lookingForwardOptions.length === 0 ? 'opacity-50 cursor-not-allowed' : ''
                             //     }`}
                             disabled={lookingForwardOptions.length === 0}
