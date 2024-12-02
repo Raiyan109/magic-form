@@ -145,23 +145,32 @@ const HomePage = () => {
 
     const AnimatedButton: React.FC<AnimatedButtonProps> = ({ onClick, children }) => {
         const [isDelay, setIsDelay] = useState(false);
+        const [isClicked, setIsClicked] = useState(false);
 
         const handleClick = () => {
             if (isDelay) return;
             setIsDelay(true);
+            setIsClicked(true);
             onClick();
-            setTimeout(() => setIsDelay(false), 10000); // Adjust delay as needed
+            setTimeout(() => {
+                setIsDelay(false);
+                setIsClicked(false);
+            }, 500);
         };
 
         return (
             <motion.div
-                className={`w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 ${isDelay ? 'cursor-wait' : 'cursor-pointer'
+                className={`w-full h-14 border rounded flex items-center justify-start pl-5 ${isDelay ? 'cursor-wait' : 'cursor-pointer'
+                    } ${isClicked ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'
                     }`}
                 onClick={handleClick}
                 whileTap={{
                     scale: 0.9,
                     transition: { type: 'spring', stiffness: 500, damping: 30 },
                 }}
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 100, damping: 20 }}
             >
                 {children}
             </motion.div>
@@ -197,28 +206,52 @@ const HomePage = () => {
         const step = steps[currentStep];
         if (typeof step === 'string') {
             return (
-                <div>
+                <motion.div
+                    whileTap={{
+                        scale: 0.9,
+                        transition: { type: 'spring', stiffness: 500, damping: 30 },
+                    }}
+                    initial={{ y: 50, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+                >
                     <h1 className="text-xl lg:text-3xl font-bold text-[#20659a] text-center max-w-3xl">
                         {step}
                     </h1>
-                </div>
+                </motion.div>
             );
         } else if ('text1' in step && 'text2' in step) {
             if ('text1' in step && step.text2 === '(Mehrfachauswahl möglich)' || 'Nun würden wir Dich gern unverbindlich kennenlernen:') {
                 return (
-                    <div className="space-y-6">
+                    <motion.div className="space-y-6"
+                        whileTap={{
+                            scale: 0.9,
+                            transition: { type: 'spring', stiffness: 500, damping: 30 },
+                        }}
+                        initial={{ y: 50, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+                    >
                         <h1 className="text-xl lg:text-3xl font-bold text-[#20659a]">{step.text1}</h1>
                         <p className="text-xl text-black">{step.text2}</p>
                         <p className="text-xl text-black">{step.text3}</p>
-                    </div>
+                    </motion.div>
 
                 );
             } else {
                 return (
-                    <div className="space-y-6">
+                    <motion.div className="space-y-6"
+                        whileTap={{
+                            scale: 0.9,
+                            transition: { type: 'spring', stiffness: 500, damping: 30 },
+                        }}
+                        initial={{ y: 50, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+                    >
                         <h1 className="text-xl lg:text-3xl font-bold text-[#20659a]">{step.text1}</h1>
                         <p className="text-lg lg:text-xl text-[#20659a]">{step.text2}</p>
-                    </div>
+                    </motion.div>
                 );
             }
         } else {
@@ -254,6 +287,9 @@ const HomePage = () => {
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
                             }}
+                            initial={{ y: 50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
                             <h1 className="text-[#20659a] text-xl font-normal">❌ Unfortunately not</h1>
                         </motion.div>
@@ -268,6 +304,9 @@ const HomePage = () => {
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
                             }}
+                            initial={{ y: 50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
                             <h1 className="text-[#20659a] text-xl font-normal">1-4 Years</h1>
                         </motion.div>
@@ -296,6 +335,9 @@ const HomePage = () => {
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
                             }}
+                            initial={{ y: 50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
                             <h1 className="text-[#20659a] text-xl font-normal">Negotiating safe</h1>
                         </motion.div>
@@ -304,6 +346,9 @@ const HomePage = () => {
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
                             }}
+                            initial={{ y: 50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
                             <h1 className="text-[#20659a] text-xl font-normal">Basic Knowledge</h1>
                         </motion.div>
@@ -312,6 +357,9 @@ const HomePage = () => {
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
                             }}
+                            initial={{ y: 50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
                             <h1 className="text-[#20659a] text-xl font-normal">I dont know basic german</h1>
                         </motion.div>
@@ -319,31 +367,37 @@ const HomePage = () => {
                 );
             case 4:
                 return (
-                    <div className="space-y-2">
-                        {['Above average remuneration', '30 days holiday', '3 free afternoons', 'Great advancement', 'A family team'].map((option) => (
-                            <motion.div
-                                key={option}
-                                className={`w-full h-14 border ${lookingForwardOptions.includes(option)
-                                    ? 'bg-[#20659a] text-white' // Selected state
-                                    : 'bg-[#f0f8fd] text-[#20659a]' // Default state
-                                    } rounded flex items-center justify-start gap-5 pl-5 cursor-pointer`}
-                                onClick={() => toggleLookingForwardOption(option)}
-                                whileTap={{
-                                    scale: 0.9,
-                                    transition: { type: 'spring', stiffness: 500, damping: 30 },
-                                }}
-                            >
-                                {option === 'Above average remuneration' ? <BadgeEuro fill="#f0e2c0" color="#f0b728" size={25} /> : option === '30 days holiday' ? <Flag color="#20659a" size={25} /> : option === '3 free afternoons' ? <History color="gray" size={25} /> : option === 'Great advancement' ? <BookText color="brown" size={25} /> : <Users color="purple" size={25} />}
-                                <h1 className=" text-xl font-normal">{option}</h1>
-                            </motion.div>
-                        ))}
+                    <div className="space-y-8">
+                        <div className="space-y-2">
+                            {['Above average remuneration', '30 days holiday', '3 free afternoons', 'Great advancement', 'A family team'].map((option) => (
+                                <motion.div
+                                    key={option}
+                                    className={`w-full h-14 border ${lookingForwardOptions.includes(option)
+                                        ? 'bg-[#20659a] text-white' // Selected state
+                                        : 'bg-[#f0f8fd] text-[#20659a]' // Default state
+                                        } rounded flex items-center justify-start gap-5 pl-5 cursor-pointer`}
+                                    onClick={() => toggleLookingForwardOption(option)}
+                                    whileTap={{
+                                        scale: 0.9,
+                                        transition: { type: 'spring', stiffness: 500, damping: 30 },
+                                    }}
+                                    initial={{ y: 50, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+                                >
+                                    {option === 'Above average remuneration' ? <BadgeEuro fill="#f0e2c0" color="#f0b728" size={25} /> : option === '30 days holiday' ? <Flag color="#20659a" size={25} /> : option === '3 free afternoons' ? <History color="gray" size={25} /> : option === 'Great advancement' ? <BookText color="brown" size={25} /> : <Users color="purple" size={25} />}
+                                    <h1 className=" text-xl font-normal">{option}</h1>
+                                </motion.div>
+                            ))}
+                        </div>
                         <RainbowButton
                             onClick={() => handleNext('lookingForward', lookingForwardOptions)}
+                            className="bg-[#20659a]"
                             // className={`w-full h-14 mt-4 rounded bg-[#20659a] text-white font-bold ${lookingForwardOptions.length === 0 ? 'opacity-50 cursor-not-allowed' : ''
                             //     }`}
                             disabled={lookingForwardOptions.length === 0}
                         >
-                            On The Last Question
+                            Zur letzten Frage! 🏁
                         </RainbowButton>
                     </div>
                 );
