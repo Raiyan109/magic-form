@@ -299,7 +299,7 @@ const HomePage = () => {
             case 2:
                 return (
                     <div className="space-y-2">
-                        <motion.div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
+                        <motion.div className="w-full h-20 rounded-lg bg-[#f0f8fd] border border-[#cde8fc]  flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -330,7 +330,7 @@ const HomePage = () => {
                         <AnimatedButton onClick={() => handleNext('speaking', 'Fließend')}>
                             <h1 className="text-[#20659a] text-xl font-normal">Fließend</h1>
                         </AnimatedButton>
-                        <motion.div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
+                        <motion.div className="w-full h-20 rounded-lg bg-[#f0f8fd] border border-[#cde8fc]  flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -341,7 +341,7 @@ const HomePage = () => {
                         >
                             <h1 className="text-[#20659a] text-xl font-normal">Verhandlungssicher</h1>
                         </motion.div>
-                        <motion.div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
+                        <motion.div className="w-full h-20 rounded-lg bg-[#f0f8fd] border border-[#cde8fc]  flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -352,7 +352,7 @@ const HomePage = () => {
                         >
                             <h1 className="text-[#20659a] text-xl font-normal">Grundkenntnisse</h1>
                         </motion.div>
-                        <motion.div className="w-full h-14 bg-[#f0f8fd] border border-[#cde8fc] rounded flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
+                        <motion.div className="w-full h-20 rounded-lg bg-[#f0f8fd] border border-[#cde8fc] flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -485,12 +485,12 @@ const HomePage = () => {
         }
     };
     return (
-        <div className="py-32">
+        <div className="pt-24 flex  justify-center backdrop">
             {showFinalMessage ? <FinalMessage /> : (
                 <div>
                     <ShineBorder
-                        className="relative flex py-32 w-full flex-col items-center justify-center overflow-hidden rounded-lg border  md:shadow-xl "
-                        color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+                        className="relative flex p-32 w-full flex-col items-center justify-center overflow-hidden rounded-lg border  md:shadow-xl "
+                        color={["#686570", "#FE8FB5", "#FFBE7B"]}
                     >
                         <div className="">
                             {/* p-5 border rounded-md max-w-md mx-auto */}
