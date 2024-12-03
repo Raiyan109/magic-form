@@ -108,8 +108,34 @@ body {
   }
 }
 
+.input-phone-number input {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
 .input-phone-number input:focus {
   outline: none !important;
   border: none !important;
   box-shadow: none !important;
+}
+
+.react-tel-input {
+  font-size: 0.9rem !important;
+}
+
+.react-tel-input .form-control {
+  font-size: 23px;
+  color: gray;
+  margin-left: 10px;
+}
+
+.flag-dropdown {
+  border: none !important;
+
+}
+
+.flag {
+  width: 50px;
+  height: 50px;
 }

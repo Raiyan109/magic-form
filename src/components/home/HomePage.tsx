@@ -6,12 +6,17 @@ import FinalMessage from "./FinalMessage";
 import { BadgeEuro, BookText, Flag, History, Users } from "lucide-react";
 import { RainbowButton } from "../ui/rainbow-button";
 import 'react-phone-number-input/style.css'
-import PhoneInput, { type Value } from 'react-phone-number-input';
+// import PhoneInput, { type Value,  } from 'react-phone-number-input';
+// import CountryCode from 'react-phone-number-input';
 import { motion } from "motion/react"
 import finalImg from '@/assets/magic form final message image.jpg'
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 
-type CountryCode = 'us' | 'bd' | 'ca' | 'de' | 'fr' | string;
+
+
+// type CountryCode = 'us' | 'bd' | 'ca' | 'de' | 'fr' | string;
 
 // interface FormValues {
 //     name: string;
@@ -53,9 +58,9 @@ const HomePage = () => {
         time: '',
     });
     const [lookingForwardOptions, setLookingForwardOptions] = useState<string[]>([]);
-    const [countryCode, setCountryCode] = useState<CountryCode | undefined>('bd');
-    const [ipAddress, setIpAddress] = useState('103.204.211.42');
-    const [value, setValue] = useState<Value>();
+    const [value, setValue] = useState<string>('');
+    const [countryCode, setCountryCode] = useState<string>('bd');
+    const [ipAddress, setIpAddress] = useState<string>('');
     const [isClickedFinal, setIsClickedFinal] = useState(false);
     // const [formValues] = useState<FormValues>({
     //     name: '',
@@ -69,35 +74,30 @@ const HomePage = () => {
         const fetchUserIPAddress = async () => {
             try {
                 const response = await fetch('https://api.ipify.org/?format=json');
-
                 const data = await response.json();
                 setIpAddress(data.ip);
             } catch (error) {
-                console.error('Error fetching ip address:', error);
-                // Default to Bangladesh if API fails
-                setIpAddress('103.204.211.42');
+                console.error('Error fetching IP address:', error);
+                setIpAddress('103.204.211.42'); // Default IP
             }
         };
         fetchUserIPAddress();
     }, []);
 
-
-    // Fetch user's country code based on IP
     useEffect(() => {
         const fetchUserCountry = async () => {
             try {
                 const response = await fetch(`https://ipapi.co/${ipAddress}/json/`);
-                // const response = await fetch('https://ipapi.co/json/'); 
                 const data = await response.json();
-                setCountryCode(data.country_code.toLowerCase() as CountryCode);
-                // setCountryCode(data.country_code.toLowerCase());
+                setCountryCode(data.country_code.toLowerCase());
             } catch (error) {
                 console.error('Error fetching geolocation data:', error);
-                // Default to Bangladesh if API fails
-                setCountryCode('bd');
+                setCountryCode('bd'); // Default to Bangladesh
             }
         };
-        fetchUserCountry();
+        if (ipAddress) {
+            fetchUserCountry();
+        }
     }, [ipAddress]);
 
 
@@ -198,6 +198,8 @@ const HomePage = () => {
                 : [...prev, option] // Add if not selected
         );
     };
+
+
 
     // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     //     const { name, value } = e.target;
@@ -444,27 +446,28 @@ const HomePage = () => {
                             <div className="relative">
                                 {/* <input type="text" className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-20 text-2xl" placeholder="Dein Voller Name *" />
                             <p className="absolute top-5 left-5 text-2xl">👋</p> */}
-                                <PhoneInput
+                                {/* <PhoneInput
                                     className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-3 text-2xl input-phone-number"
                                     inputClass="my-input-class"
-                                    // inputStyle={{
-                                    //     border: 'none',
-                                    //     outline: 'none'
-                                    // }}
                                     placeholder="Dein Voller Name *"
                                     international
                                     value={value}
                                     onChange={setValue}
-                                    containerStyle={{
-                                        border: "10px solid black"
-                                    }}
-                                    inputStyle={{
-                                        background: "lightblue"
-                                    }}
                                     // onChange={handlePhoneChange}
                                     // country={countryCode}
-                                    defaultCountry={'BD'}
-                                />
+                                    defaultCountry={countryCode as CountryCode}
+                                /> */}
+                                <div
+                                    className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl text-2xl input-phone-number flex justify-center items-center pl-5"
+                                >
+                                    <PhoneInput
+                                        country={countryCode}
+                                        value={value}
+                                        onChange={(phone) => setValue(phone)}
+                                        inputClass="input-phone-number"
+                                        placeholder="Enter your phone number"
+                                    />
+                                </div>
                                 {/* <p className="absolute top-5 left-5 text-2xl">👋</p> */}
                             </div>
                         </div>
