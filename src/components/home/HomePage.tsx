@@ -148,7 +148,7 @@ const HomePage = () => {
 
         return (
             <motion.div
-                className={`w-full h-20 border rounded-lg flex items-center justify-start pl-5 ${isDelay ? 'cursor-wait' : 'cursor-pointer'
+                className={`w-full h-10 lg:h-20 border rounded-lg flex items-center justify-start pl-5 ${isDelay ? 'cursor-wait' : 'cursor-pointer'
                     } ${isClicked ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'
                     }`}
                 onClick={handleClick}
@@ -278,11 +278,11 @@ const HomePage = () => {
                 return (
                     <div className="space-y-2">
                         <AnimatedButton onClick={() => handleNext('workPreference', 'Teilzeit')}>
-                            <h1 className=" text-2xl font-normal">Teilzeit</h1>
+                            <h1 className=" text-lg lg:text-2xl font-normal">Teilzeit</h1>
                         </AnimatedButton>
 
                         <AnimatedButton onClick={() => handleNext('workPreference', 'Vollzeit')}>
-                            <h1 className=" text-2xl font-normal">Vollzeit</h1>
+                            <h1 className="text-lg lg:text-2xl font-normal">Vollzeit</h1>
                         </AnimatedButton>
                     </div>
                 );
@@ -292,7 +292,7 @@ const HomePage = () => {
                         <AnimatedButton onClick={() => handleNext('availability', '✔️ Ja klar!')}>
                             <h1 className=" text-xl font-normal">✔️ Ja klar!</h1>
                         </AnimatedButton>
-                        <motion.div className={`w-full h-20 ${isClickedFinal ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessage}
+                        <motion.div className={`w-full h-10 lg:h-20 ${isClickedFinal ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessage}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -309,7 +309,7 @@ const HomePage = () => {
             case 2:
                 return (
                     <div className="space-y-2">
-                        <motion.div className={`w-full h-20 ${isClickedFinal ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessage}
+                        <motion.div className={`w-full h-10 lg:h-20 ${isClickedFinal ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessage}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -340,7 +340,7 @@ const HomePage = () => {
                         <AnimatedButton onClick={() => handleNext('speaking', 'Fließend')}>
                             <h1 className=" text-xl font-normal">Fließend</h1>
                         </AnimatedButton>
-                        <motion.div className={`w-full h-20 ${verh ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessageVerh}
+                        <motion.div className={`w-full h-10 lg:h-20 ${verh ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessageVerh}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -351,7 +351,7 @@ const HomePage = () => {
                         >
                             <h1 className=" text-xl font-normal">Verhandlungssicher</h1>
                         </motion.div>
-                        <motion.div className={`w-full h-20 ${grund ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessageGrund}
+                        <motion.div className={`w-full h-10 lg:h-20 ${grund ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessageGrund}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -362,7 +362,7 @@ const HomePage = () => {
                         >
                             <h1 className=" text-xl font-normal">Grundkenntnisse</h1>
                         </motion.div>
-                        <motion.div className={`w-full h-20 ${ich ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessageIch}
+                        <motion.div className={`w-full h-10 lg:h-20 ${ich ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessageIch}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -382,10 +382,10 @@ const HomePage = () => {
                             {['Überdurchschnittliche Vergütung zzgl. Boni', '30 Tage Urlaub', '3 freie Nachmittage und die Option auf eine 4 Tage Woche', 'Tolle Fort- und Weiterbildungsmöglichkeiten', 'Ein familiäres Team, in dem Deine Leistungen wertgeschätzt werden'].map((option) => (
                                 <motion.div
                                     key={option}
-                                    className={`w-full h-20 border ${lookingForwardOptions.includes(option)
+                                    className={`w-full h-14 lg:h-20 border ${lookingForwardOptions.includes(option)
                                         ? 'bg-[#20659a] text-white' // Selected state
                                         : 'bg-[#f0f8fd] text-[#20659a]' // Default state
-                                        } rounded flex items-center justify-start gap-5 pl-5 cursor-pointer`}
+                                        } rounded flex items-center justify-start gap-5 pl-2 lg:pl-5 cursor-pointer`}
                                     onClick={() => toggleLookingForwardOption(option)}
                                     whileTap={{
                                         scale: 0.9,
@@ -396,7 +396,7 @@ const HomePage = () => {
                                     transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                                 >
                                     {option === 'Überdurchschnittliche Vergütung zzgl. Boni' ? <BadgeEuro fill="#f0e2c0" color="#f0b728" size={25} /> : option === '30 Tage Urlaub' ? <Flag color="#7899b3" size={25} /> : option === '3 freie Nachmittage und die Option auf eine 4 Tage Woche' ? <History color="gray" size={25} /> : option === 'Tolle Fort- und Weiterbildungsmöglichkeiten' ? <BookText color="brown" size={25} /> : <Users color="purple" size={25} />}
-                                    <h1 className=" text-xl font-normal">{option}</h1>
+                                    <h1 className=" text-sm lg:text-xl font-normal">{option}</h1>
                                 </motion.div>
                             ))}
                         </div>
@@ -475,7 +475,7 @@ const HomePage = () => {
                         >
                             <RainbowButton
                                 onClick={() => handleNext('lookingForward', lookingForwardOptions)}
-                                className="bg-[#daeaf3] text-[#20659a] border border-[#20659a] "
+                                className="bg-[#daeaf3] text-[#20659a] border border-[#20659a] text-sm"
                                 // className={`w-full h-14 mt-4 rounded bg-[#20659a] text-white font-bold ${lookingForwardOptions.length === 0 ? 'opacity-50 cursor-not-allowed' : ''
                                 //     }`}
                                 disabled={lookingForwardOptions.length === 0}
@@ -500,11 +500,11 @@ const HomePage = () => {
                     <div className="blob"></div>
                 </div>
             </div>
-            <div className="py-14 flex  justify-center backdrop">
+            <div className="py-10 lg:py-14 px-5 lg:px-0 flex  justify-center backdrop">
                 {showFinalMessage ? <FinalMessage /> : (
                     <div>
                         <ShineBorder
-                            className="relative flex px-32 py-14 w-full flex-col items-center justify-center overflow-hidden rounded-lg border  md:shadow-xl "
+                            className="relative flex px-3 lg:px-32 py-8 lg:py-14 w-full flex-col items-center justify-center overflow-hidden rounded-lg border  md:shadow-xl "
                             color={["#686570", "#FE8FB5", "#FFBE7B"]}
                         >
                             <div className="">
