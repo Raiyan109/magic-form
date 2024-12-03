@@ -335,10 +335,10 @@ const HomePage = () => {
                 return (
                     <div className="space-y-2">
                         <AnimatedButton onClick={() => handleNext('speaking', 'Muttersprachlich')}>
-                            <h1 className=" text-xl font-normal">Muttersprachlich</h1>
+                            <h1 className=" text-sm lg:text-xl font-normal">Muttersprachlich</h1>
                         </AnimatedButton>
                         <AnimatedButton onClick={() => handleNext('speaking', 'Fließend')}>
-                            <h1 className=" text-xl font-normal">Fließend</h1>
+                            <h1 className=" text-sm lg:text-xl font-normal">Fließend</h1>
                         </AnimatedButton>
                         <motion.div className={`w-full h-10 lg:h-20 ${verh ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessageVerh}
                             whileTap={{
@@ -349,7 +349,7 @@ const HomePage = () => {
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
-                            <h1 className=" text-xl font-normal">Verhandlungssicher</h1>
+                            <h1 className=" text-sm lg:text-xl font-normal">Verhandlungssicher</h1>
                         </motion.div>
                         <motion.div className={`w-full h-10 lg:h-20 ${grund ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessageGrund}
                             whileTap={{
@@ -360,7 +360,7 @@ const HomePage = () => {
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
-                            <h1 className=" text-xl font-normal">Grundkenntnisse</h1>
+                            <h1 className=" text-sm lg:text-xl font-normal">Grundkenntnisse</h1>
                         </motion.div>
                         <motion.div className={`w-full h-10 lg:h-20 ${ich ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessageIch}
                             whileTap={{
@@ -371,7 +371,7 @@ const HomePage = () => {
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
-                            <h1 className=" text-xl font-normal">Ich spreche kein deutsch / I don't speak german</h1>
+                            <h1 className=" text-sm lg:text-xl font-normal">Ich spreche kein deutsch / I don't speak german</h1>
                         </motion.div>
                     </div>
                 );
