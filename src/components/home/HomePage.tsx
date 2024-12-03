@@ -6,7 +6,7 @@ import FinalMessage from "./FinalMessage";
 import { BadgeEuro, BookText, Flag, History, Users } from "lucide-react";
 import { RainbowButton } from "../ui/rainbow-button";
 import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
+import PhoneInput, { type Value } from 'react-phone-number-input';
 import { motion } from "motion/react"
 import finalImg from '@/assets/magic form final message image.jpg'
 
@@ -55,7 +55,7 @@ const HomePage = () => {
     const [lookingForwardOptions, setLookingForwardOptions] = useState<string[]>([]);
     const [countryCode, setCountryCode] = useState<CountryCode | undefined>('bd');
     const [ipAddress, setIpAddress] = useState('103.204.211.42');
-    const [phone, setPhone] = useState()
+    const [value, setValue] = useState<Value>();
     const [isClickedFinal, setIsClickedFinal] = useState(false);
     // const [formValues] = useState<FormValues>({
     //     name: '',
@@ -101,10 +101,10 @@ const HomePage = () => {
     }, [ipAddress]);
 
 
-    const handlePhoneChange = (value?: string) => {
-        console.log('Phone number:', value);
-        setPhone(phone);
-    };
+    // const handlePhoneChange = (value?: string) => {
+    //     console.log('Phone number:', value);
+    //     setValue(value);
+    // };
 
 
     const step1Text: StepText = {
@@ -445,11 +445,25 @@ const HomePage = () => {
                                 {/* <input type="text" className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-20 text-2xl" placeholder="Dein Voller Name *" />
                             <p className="absolute top-5 left-5 text-2xl">👋</p> */}
                                 <PhoneInput
-                                    className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-3 text-2xl"
+                                    className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-3 text-2xl input-phone-number"
+                                    inputClass="my-input-class"
+                                    // inputStyle={{
+                                    //     border: 'none',
+                                    //     outline: 'none'
+                                    // }}
                                     placeholder="Dein Voller Name *"
-                                    value={phone}
-                                    onChange={handlePhoneChange}
-                                    country={countryCode}
+                                    international
+                                    value={value}
+                                    onChange={setValue}
+                                    containerStyle={{
+                                        border: "10px solid black"
+                                    }}
+                                    inputStyle={{
+                                        background: "lightblue"
+                                    }}
+                                    // onChange={handlePhoneChange}
+                                    // country={countryCode}
+                                    defaultCountry={'BD'}
                                 />
                                 {/* <p className="absolute top-5 left-5 text-2xl">👋</p> */}
                             </div>

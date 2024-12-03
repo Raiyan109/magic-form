@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Space+Grotesk:wght@300..700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -24,12 +26,13 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: "Roboto", sans-serif;
   /* height: 100vh; */
   /* overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center; */
-  
+
   /* Animated gradient background */
   background-image: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
   background-size: 400% 400%;
@@ -40,9 +43,11 @@ body {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -52,10 +57,12 @@ body {
   position: absolute;
   width: 100vw;
   height: 100vh;
-  background: rgba(255, 255, 255, 0.25); /* Frosted glass effect */
+  background: rgba(255, 255, 255, 0.25);
+  /* Frosted glass effect */
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(10.5px);
-  z-index: 1; /* Place above the blobs */
+  z-index: 1;
+  /* Place above the blobs */
 }
 
 .blob-outer-container {
@@ -95,16 +102,14 @@ body {
   0% {
     transform: rotate(0deg) scale(2);
   }
+
   100% {
     transform: rotate(1turn) scale(2);
   }
 }
 
-.shine-container {
-  
-  /* Add your background pattern here */
-  background-color: #ffffff;
-  background-image: radial-gradient(rgba(12, 12, 12, 0.171) 2px, transparent 0);
-  background-size: 30px 30px;
-  background-position: -5px -5px;
+.input-phone-number input:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
