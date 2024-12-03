@@ -140,23 +140,22 @@ const HomePage = () => {
     ];
 
     const handleNext = (field: string, value: string[] | string) => {
-        setSelectedValues((prev) => ({ ...prev, [field]: value }));
-        setCurrentStep((prevStep) => prevStep + 1);
+        setTimeout(() => {
+            setSelectedValues((prev) => ({ ...prev, [field]: value }));
+            setCurrentStep((prevStep) => prevStep + 1);
+        }, 600);
     };
+
 
     const AnimatedButton: React.FC<AnimatedButtonProps> = ({ onClick, children }) => {
         const [isDelay, setIsDelay] = useState(false);
         const [isClicked, setIsClicked] = useState(false);
 
         const handleClick = () => {
-            if (isDelay) return;
-            setIsDelay(true);
-            setIsClicked(true);
+            setIsDelay(true)
+            setIsClicked(true)
             onClick();
-            setTimeout(() => {
-                setIsDelay(false);
-                setIsClicked(false);
-            }, 500);
+
         };
 
         return (
@@ -186,7 +185,9 @@ const HomePage = () => {
 
 
     const handleFinalMessage = () => {
-        setShowFinalMessage(true); // Show the final message
+        setTimeout(() => {
+            setShowFinalMessage(true); // Show the final message after a 2-second delay
+        }, 2000);
     };
 
     const toggleLookingForwardOption = (option: string) => {
@@ -268,20 +269,19 @@ const HomePage = () => {
                 return (
                     <div className="space-y-2">
                         <AnimatedButton onClick={() => handleNext('workPreference', 'Teilzeit')}>
-                            <h1 className="text-[#20659a] text-2xl font-normal">Teilzeit</h1>
+                            <h1 className=" text-2xl font-normal">Teilzeit</h1>
                         </AnimatedButton>
 
                         <AnimatedButton onClick={() => handleNext('workPreference', 'Vollzeit')}>
-                            <h1 className="text-[#20659a] text-2xl font-normal">Vollzeit</h1>
+                            <h1 className=" text-2xl font-normal">Vollzeit</h1>
                         </AnimatedButton>
-
                     </div>
                 );
             case 1:
                 return (
                     <div className="space-y-2">
                         <AnimatedButton onClick={() => handleNext('availability', '✔️ Ja klar!')}>
-                            <h1 className="text-[#20659a] text-xl font-normal">✔️ Ja klar!</h1>
+                            <h1 className=" text-xl font-normal">✔️ Ja klar!</h1>
                         </AnimatedButton>
                         <motion.div className="w-full h-20 bg-[#f0f8fd] border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
                             whileTap={{
@@ -292,7 +292,7 @@ const HomePage = () => {
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
-                            <h1 className="text-[#20659a] text-xl font-normal">❌ Leider nicht</h1>
+                            <h1 className=" text-xl font-normal">❌ Leider nicht</h1>
                         </motion.div>
 
                     </div>
@@ -309,16 +309,16 @@ const HomePage = () => {
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
-                            <h1 className="text-[#20659a] text-xl font-normal">1-4 Jahre</h1>
+                            <h1 className=" text-xl font-normal">1-4 Jahre</h1>
                         </motion.div>
                         <AnimatedButton onClick={() => handleNext('experience', '5-10 Jahre')}>
-                            <h1 className="text-[#20659a] text-xl font-normal">5-10 Jahre</h1>
+                            <h1 className=" text-xl font-normal">5-10 Jahre</h1>
                         </AnimatedButton>
                         <AnimatedButton onClick={() => handleNext('experience', '11-15 Jahre')}>
-                            <h1 className="text-[#20659a] text-xl font-normal">11-15 Jahre</h1>
+                            <h1 className=" text-xl font-normal">11-15 Jahre</h1>
                         </AnimatedButton>
                         <AnimatedButton onClick={() => handleNext('experience', '16 und mehr Jahre')}>
-                            <h1 className="text-[#20659a] text-xl font-normal">16 und mehr Jahre</h1>
+                            <h1 className=" text-xl font-normal">16 und mehr Jahre</h1>
                         </AnimatedButton>
                     </div>
                 );
@@ -326,10 +326,10 @@ const HomePage = () => {
                 return (
                     <div className="space-y-2">
                         <AnimatedButton onClick={() => handleNext('speaking', 'Muttersprachlich')}>
-                            <h1 className="text-[#20659a] text-xl font-normal">Muttersprachlich</h1>
+                            <h1 className=" text-xl font-normal">Muttersprachlich</h1>
                         </AnimatedButton>
                         <AnimatedButton onClick={() => handleNext('speaking', 'Fließend')}>
-                            <h1 className="text-[#20659a] text-xl font-normal">Fließend</h1>
+                            <h1 className=" text-xl font-normal">Fließend</h1>
                         </AnimatedButton>
                         <motion.div className="w-full h-20 rounded-lg bg-[#f0f8fd] border border-[#cde8fc]  flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
                             whileTap={{
@@ -340,7 +340,7 @@ const HomePage = () => {
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
-                            <h1 className="text-[#20659a] text-xl font-normal">Verhandlungssicher</h1>
+                            <h1 className=" text-xl font-normal">Verhandlungssicher</h1>
                         </motion.div>
                         <motion.div className="w-full h-20 rounded-lg bg-[#f0f8fd] border border-[#cde8fc]  flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
                             whileTap={{
@@ -351,7 +351,7 @@ const HomePage = () => {
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
-                            <h1 className="text-[#20659a] text-xl font-normal">Grundkenntnisse</h1>
+                            <h1 className=" text-xl font-normal">Grundkenntnisse</h1>
                         </motion.div>
                         <motion.div className="w-full h-20 rounded-lg bg-[#f0f8fd] border border-[#cde8fc] flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
                             whileTap={{
@@ -362,7 +362,7 @@ const HomePage = () => {
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
-                            <h1 className="text-[#20659a] text-xl font-normal">Ich spreche kein deutsch / I don't speak german</h1>
+                            <h1 className=" text-xl font-normal">Ich spreche kein deutsch / I don't speak german</h1>
                         </motion.div>
                     </div>
                 );
@@ -375,7 +375,7 @@ const HomePage = () => {
                                     key={option}
                                     className={`w-full h-14 border ${lookingForwardOptions.includes(option)
                                         ? 'bg-[#20659a] text-white' // Selected state
-                                        : 'bg-[#f0f8fd] text-[#20659a]' // Default state
+                                        : 'bg-[#f0f8fd] ' // Default state
                                         } rounded flex items-center justify-start gap-5 pl-5 cursor-pointer`}
                                     onClick={() => toggleLookingForwardOption(option)}
                                     whileTap={{
@@ -408,16 +408,16 @@ const HomePage = () => {
                 return (
                     <div className="space-y-2">
                         <AnimatedButton onClick={() => handleNext('time', 'Zwischen 8-12 Uhr. ')}>
-                            <h1 className="text-[#20659a] text-xl font-normal">Zwischen 8-12 Uhr. </h1>
+                            <h1 className=" text-xl font-normal">Zwischen 8-12 Uhr. </h1>
                         </AnimatedButton>
                         <AnimatedButton onClick={() => handleNext('time', 'Zwischen 12- 14 Uhr. ')}>
-                            <h1 className="text-[#20659a] text-xl font-normal">Zwischen 12- 14 Uhr. </h1>
+                            <h1 className=" text-xl font-normal">Zwischen 12- 14 Uhr. </h1>
                         </AnimatedButton>
                         <AnimatedButton onClick={() => handleNext('time', 'Zwischen 14 - 17 Uhr. ')}>
-                            <h1 className="text-[#20659a] text-xl font-normal">Zwischen 14 - 17 Uhr. </h1>
+                            <h1 className=" text-xl font-normal">Zwischen 14 - 17 Uhr. </h1>
                         </AnimatedButton>
                         <AnimatedButton onClick={() => handleNext('time', 'Zwischen 17 - 19 Uhr.')}>
-                            <h1 className="text-[#20659a] text-xl font-normal">Zwischen 17 - 19 Uhr. </h1>
+                            <h1 className=" text-xl font-normal">Zwischen 17 - 19 Uhr. </h1>
                         </AnimatedButton>
                     </div>
                 );
