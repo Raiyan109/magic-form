@@ -6,24 +6,10 @@ import FinalMessage from "./FinalMessage";
 import { BadgeEuro, BookText, Flag, History, Users } from "lucide-react";
 import { RainbowButton } from "../ui/rainbow-button";
 import 'react-phone-number-input/style.css'
-// import PhoneInput, { type Value,  } from 'react-phone-number-input';
-// import CountryCode from 'react-phone-number-input';
 import { motion } from "motion/react"
-import finalImg from '@/assets/magic form final message image.jpg'
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-
-
-
-
-// type CountryCode = 'us' | 'bd' | 'ca' | 'de' | 'fr' | string;
-
-// interface FormValues {
-//     name: string;
-//     email: string;
-//     age: string;
-//     address: string;
-// }
+import SuccessPage from "./SuccessPage";
 
 interface SelectedValues {
     workPreference: string;
@@ -45,7 +31,6 @@ interface AnimatedButtonProps {
     children: React.ReactNode;
 }
 
-
 const HomePage = () => {
     const [currentStep, setCurrentStep] = useState(0);
     const [showFinalMessage, setShowFinalMessage] = useState(false);
@@ -62,6 +47,9 @@ const HomePage = () => {
     const [countryCode, setCountryCode] = useState<string>('bd');
     const [ipAddress, setIpAddress] = useState<string>('');
     const [isClickedFinal, setIsClickedFinal] = useState(false);
+    const [verh, setVerh] = useState(false);
+    const [grund, setGrund] = useState(false);
+    const [ich, setIch] = useState(false);
     // const [formValues] = useState<FormValues>({
     //     name: '',
     //     email: '',
@@ -136,7 +124,7 @@ const HomePage = () => {
         stepLookingForwardText,
         stepLastQuestionText,
         stepContactInfoText,
-        'Vielen Dank für Deine Bewerbung. Wir freuen uns darauf Dich kennenzulernen.',
+        '',
     ];
 
     const handleNext = (field: string, value: string[] | string) => {
@@ -186,6 +174,24 @@ const HomePage = () => {
 
     const handleFinalMessage = () => {
         setIsClickedFinal(true)
+        setTimeout(() => {
+            setShowFinalMessage(true);
+        }, 600);
+    };
+    const handleFinalMessageVerh = () => {
+        setVerh(true)
+        setTimeout(() => {
+            setShowFinalMessage(true);
+        }, 600);
+    };
+    const handleFinalMessageGrund = () => {
+        setGrund(true)
+        setTimeout(() => {
+            setShowFinalMessage(true);
+        }, 600);
+    };
+    const handleFinalMessageIch = () => {
+        setIch(true)
         setTimeout(() => {
             setShowFinalMessage(true);
         }, 600);
@@ -334,7 +340,7 @@ const HomePage = () => {
                         <AnimatedButton onClick={() => handleNext('speaking', 'Fließend')}>
                             <h1 className=" text-xl font-normal">Fließend</h1>
                         </AnimatedButton>
-                        <motion.div className={`w-full h-20 ${isClickedFinal ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessage}
+                        <motion.div className={`w-full h-20 ${verh ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessageVerh}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -345,7 +351,7 @@ const HomePage = () => {
                         >
                             <h1 className=" text-xl font-normal">Verhandlungssicher</h1>
                         </motion.div>
-                        <motion.div className={`w-full h-20 ${isClickedFinal ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessage}
+                        <motion.div className={`w-full h-20 ${grund ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessageGrund}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -356,7 +362,7 @@ const HomePage = () => {
                         >
                             <h1 className=" text-xl font-normal">Grundkenntnisse</h1>
                         </motion.div>
-                        <motion.div className={`w-full h-20 ${isClickedFinal ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessage}
+                        <motion.div className={`w-full h-20 ${ich ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessageIch}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -444,19 +450,6 @@ const HomePage = () => {
                                 <p className="absolute top-5 left-5 text-2xl">📧</p>
                             </div>
                             <div className="relative">
-                                {/* <input type="text" className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-20 text-2xl" placeholder="Dein Voller Name *" />
-                            <p className="absolute top-5 left-5 text-2xl">👋</p> */}
-                                {/* <PhoneInput
-                                    className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl pl-3 text-2xl input-phone-number"
-                                    inputClass="my-input-class"
-                                    placeholder="Dein Voller Name *"
-                                    international
-                                    value={value}
-                                    onChange={setValue}
-                                    // onChange={handlePhoneChange}
-                                    // country={countryCode}
-                                    defaultCountry={countryCode as CountryCode}
-                                /> */}
                                 <div
                                     className="h-20 border border-[#daeaf3] w-full outline-none focus:border focus:border-[#20659a]  focus:transition-all focus:duration-300 transition-all duration-300 placeholder:text-2xl text-2xl input-phone-number flex justify-center items-center pl-5"
                                 >
@@ -468,7 +461,6 @@ const HomePage = () => {
                                         placeholder="Enter your phone number"
                                     />
                                 </div>
-                                {/* <p className="absolute top-5 left-5 text-2xl">👋</p> */}
                             </div>
                         </div>
                         <p className="text-lg lg:text-xl text-center text-[#20659a] max-w-2xl">🔒  100% sichere Datenverbindung mit SSL. Wir respektieren Deine Privatsphäre.</p>
@@ -495,28 +487,7 @@ const HomePage = () => {
                 );
             case 7:
                 return (
-                    <div className="flex flex-col items-center justify-center">
-                        <div
-                            className="relative flex h-full w-full flex-col items-center justify-center gap-10 overflow-hidden rounded-lg  py-10"
-
-                        >
-                            <div className="space-y-6">
-                                {/* <h1 className="text-xl lg:text-3xl font-bold text-[#20659a]">Vielen Dank für Deine Bewerbung. Wir freuen uns darauf Dich kennenzulernen.</h1> */}
-                                <p className="text-xl text-black">So geht es jetzt weiter: </p>
-                                <p className="text-xl text-black">Wir sehen uns Deine Bewerbung an und melden uns innerhalb der nächsten 48 Stunden telefonisch bei Dir. </p>
-                                <p className="text-xl text-black">Speicher Dir dafür gerne schon einmal die folgenden Nummern ein, denn unter einer der drei werden wir Dich kontaktieren:</p>
-                                <p className="text-xl text-black">+49 151 51589830</p>
-                                <p className="text-xl text-black">+49 151 25006663</p>
-                                <p className="text-xl text-black">+49 160 96703175</p>
-                                <p className="text-xl text-black">Gemeinsam vereinbaren wir einen Termin für ein unverbindliches Kennenlerngespräch. </p>
-                                <p className="text-xl text-black">Beim Kennenlernen kannst uns alle Fragen stellen, die Du gerne beantwortet haben möchtest.
-                                </p>
-                                <p className="text-xl text-black">Deine Ansprechpartnerin:</p>
-                                <p className="text-xl text-black">Jasemin Bergmann</p>
-                            </div>
-                            <img src={finalImg} alt="" className="w-[684px] h-[584px] object-contain" />
-                        </div>
-                    </div>
+                    <SuccessPage />
                 );
             default:
                 return <div>Not Found</div>;
@@ -529,11 +500,11 @@ const HomePage = () => {
                     <div className="blob"></div>
                 </div>
             </div>
-            <div className="py-20 flex  justify-center backdrop">
+            <div className="py-14 flex  justify-center backdrop">
                 {showFinalMessage ? <FinalMessage /> : (
                     <div>
                         <ShineBorder
-                            className="relative flex px-32 py-20 w-full flex-col items-center justify-center overflow-hidden rounded-lg border  md:shadow-xl "
+                            className="relative flex px-32 py-14 w-full flex-col items-center justify-center overflow-hidden rounded-lg border  md:shadow-xl "
                             color={["#686570", "#FE8FB5", "#FFBE7B"]}
                         >
                             <div className="">
