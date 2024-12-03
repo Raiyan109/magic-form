@@ -9,6 +9,7 @@ import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import { motion } from "motion/react"
 import finalImg from '@/assets/magic form final message image.jpg'
+import { div } from "motion/react-client";
 
 type CountryCode = 'us' | 'bd' | 'ca' | 'de' | 'fr' | string;
 
@@ -390,15 +391,17 @@ const HomePage = () => {
                                 </motion.div>
                             ))}
                         </div>
-                        <RainbowButton
-                            onClick={() => handleNext('lookingForward', lookingForwardOptions)}
-                            className="bg-[#20659a]"
-                            // className={`w-full h-14 mt-4 rounded bg-[#20659a] text-white font-bold ${lookingForwardOptions.length === 0 ? 'opacity-50 cursor-not-allowed' : ''
-                            //     }`}
-                            disabled={lookingForwardOptions.length === 0}
-                        >
-                            Zur letzten Frage! 🏁
-                        </RainbowButton>
+                        <div className="flex items-center justify-center">
+                            <RainbowButton
+                                onClick={() => handleNext('lookingForward', lookingForwardOptions)}
+                                className="bg-[#daeaf3] text-[#20659a] border border-[#20659a] "
+                                // className={`w-full h-14 mt-4 rounded bg-[#20659a] text-white font-bold ${lookingForwardOptions.length === 0 ? 'opacity-50 cursor-not-allowed' : ''
+                                //     }`}
+                                disabled={lookingForwardOptions.length === 0}
+                            >
+                                Zur letzten Frage! 🏁
+                            </RainbowButton>
+                        </div>
                     </div>
                 );
             case 5:
@@ -444,15 +447,17 @@ const HomePage = () => {
                             </div>
                         </div>
                         <p className="text-lg lg:text-xl text-[#20659a] max-w-2xl">🔒  100% sichere Datenverbindung mit SSL. Wir respektieren Deine Privatsphäre.</p>
-                        <RainbowButton
-                            onClick={() => handleNext('lookingForward', lookingForwardOptions)}
-                            className="bg-[#20659a]"
-                            // className={`w-full h-14 mt-4 rounded bg-[#20659a] text-white font-bold ${lookingForwardOptions.length === 0 ? 'opacity-50 cursor-not-allowed' : ''
-                            //     }`}
-                            disabled={lookingForwardOptions.length === 0}
-                        >
-                            Jetzt unverbindliches Kennenlerngespräch vereinbaren! 📩
-                        </RainbowButton>
+                        <div className="flex items-center justify-center">
+                            <RainbowButton
+                                onClick={() => handleNext('lookingForward', lookingForwardOptions)}
+                                className="bg-[#daeaf3] text-[#20659a] border border-[#20659a] "
+                                // className={`w-full h-14 mt-4 rounded bg-[#20659a] text-white font-bold ${lookingForwardOptions.length === 0 ? 'opacity-50 cursor-not-allowed' : ''
+                                //     }`}
+                                disabled={lookingForwardOptions.length === 0}
+                            >
+                                Jetzt unverbindliches Kennenlerngespräch vereinbaren! 📩
+                            </RainbowButton>
+                        </div>
                     </div>
                 );
             case 7:
@@ -485,18 +490,24 @@ const HomePage = () => {
         }
     };
     return (
-        <div className="pt-24 flex  justify-center backdrop">
-            {showFinalMessage ? <FinalMessage /> : (
-                <div>
-                    <ShineBorder
-                        className="relative flex p-32 w-full flex-col items-center justify-center overflow-hidden rounded-lg border  md:shadow-xl "
-                        color={["#686570", "#FE8FB5", "#FFBE7B"]}
-                    >
-                        <div className="">
-                            {/* p-5 border rounded-md max-w-md mx-auto */}
-                            <h1 className="text-center">{renderStepTitle()}</h1>
-                            <div className="mt-5">{renderStepContent()}</div>
-                            {/* <div className="flex justify-between mt-5">
+        <div>
+            <div className="blob-outer-container">
+                <div className="blob-inner-container">
+                    <div className="blob"></div>
+                </div>
+            </div>
+            <div className="pt-24 flex  justify-center backdrop">
+                {showFinalMessage ? <FinalMessage /> : (
+                    <div>
+                        <ShineBorder
+                            className="relative flex p-32 w-full flex-col items-center justify-center overflow-hidden rounded-lg border  md:shadow-xl "
+                            color={["#686570", "#FE8FB5", "#FFBE7B"]}
+                        >
+                            <div className="">
+                                {/* p-5 border rounded-md max-w-md mx-auto */}
+                                <h1 className="text-center">{renderStepTitle()}</h1>
+                                <div className="mt-5">{renderStepContent()}</div>
+                                {/* <div className="flex justify-between mt-5">
                                 <button
                                     onClick={handleBack}
                                     disabled={currentStep === 0}
@@ -520,10 +531,11 @@ const HomePage = () => {
                                     </button>
                                 )}
                             </div> */}
-                        </div>
-                    </ShineBorder>
-                </div>
-            )}
+                            </div>
+                        </ShineBorder>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }
