@@ -148,7 +148,7 @@ const HomePage = () => {
 
         return (
             <motion.div
-                className={`w-full h-10 lg:h-20 border rounded-lg flex items-center justify-start pl-5 ${isDelay ? 'cursor-wait' : 'cursor-pointer'
+                className={`w-full h-10 lg:h-16 border rounded-lg flex items-center justify-start pl-5 ${isDelay ? 'cursor-wait' : 'cursor-pointer'
                     } ${isClicked ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'
                     }`}
                 onClick={handleClick}
@@ -278,11 +278,11 @@ const HomePage = () => {
                 return (
                     <div className="space-y-2">
                         <AnimatedButton onClick={() => handleNext('workPreference', 'Teilzeit')}>
-                            <h1 className=" text-lg lg:text-2xl font-normal">Teilzeit</h1>
+                            <h1 className=" text-lg lg:text-xl font-normal">Teilzeit</h1>
                         </AnimatedButton>
 
                         <AnimatedButton onClick={() => handleNext('workPreference', 'Vollzeit')}>
-                            <h1 className="text-lg lg:text-2xl font-normal">Vollzeit</h1>
+                            <h1 className="text-lg lg:text-xl font-normal">Vollzeit</h1>
                         </AnimatedButton>
                     </div>
                 );
@@ -290,9 +290,9 @@ const HomePage = () => {
                 return (
                     <div className="space-y-2">
                         <AnimatedButton onClick={() => handleNext('availability', '✔️ Ja klar!')}>
-                            <h1 className=" text-xl font-normal">✔️ Ja klar!</h1>
+                            <h1 className=" text-lg lg:text-xl font-normal">✔️ Ja klar!</h1>
                         </AnimatedButton>
-                        <motion.div className={`w-full h-10 lg:h-20 ${isClickedFinal ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessage}
+                        <motion.div className={`w-full h-10 lg:h-16 ${isClickedFinal ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessage}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -301,7 +301,7 @@ const HomePage = () => {
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
-                            <h1 className=" text-xl font-normal">❌ Leider nicht</h1>
+                            <h1 className=" text-lg lg:text-xl font-normal">❌ Leider nicht</h1>
                         </motion.div>
 
                     </div>
@@ -309,7 +309,7 @@ const HomePage = () => {
             case 2:
                 return (
                     <div className="space-y-2">
-                        <motion.div className={`w-full h-10 lg:h-20 ${isClickedFinal ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessage}
+                        <motion.div className={`w-full h-10 lg:h-16 ${isClickedFinal ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessage}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -318,16 +318,16 @@ const HomePage = () => {
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                         >
-                            <h1 className=" text-xl font-normal">1-4 Jahre</h1>
+                            <h1 className=" text-lg lg:text-xl font-normal">1-4 Jahre</h1>
                         </motion.div>
                         <AnimatedButton onClick={() => handleNext('experience', '5-10 Jahre')}>
-                            <h1 className=" text-xl font-normal">5-10 Jahre</h1>
+                            <h1 className=" text-lg lg:text-xl font-normal">5-10 Jahre</h1>
                         </AnimatedButton>
                         <AnimatedButton onClick={() => handleNext('experience', '11-15 Jahre')}>
-                            <h1 className=" text-xl font-normal">11-15 Jahre</h1>
+                            <h1 className=" text-lg lg:text-xl font-normal">11-15 Jahre</h1>
                         </AnimatedButton>
                         <AnimatedButton onClick={() => handleNext('experience', '16 und mehr Jahre')}>
-                            <h1 className=" text-xl font-normal">16 und mehr Jahre</h1>
+                            <h1 className=" text-lg lg:text-xl font-normal">16 und mehr Jahre</h1>
                         </AnimatedButton>
                     </div>
                 );
@@ -340,7 +340,7 @@ const HomePage = () => {
                         <AnimatedButton onClick={() => handleNext('speaking', 'Fließend')}>
                             <h1 className=" text-sm lg:text-xl font-normal">Fließend</h1>
                         </AnimatedButton>
-                        <motion.div className={`w-full h-10 lg:h-20 ${verh ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessageVerh}
+                        <motion.div className={`w-full h-10 lg:h-16 ${verh ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessageVerh}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -351,7 +351,7 @@ const HomePage = () => {
                         >
                             <h1 className=" text-sm lg:text-xl font-normal">Verhandlungssicher</h1>
                         </motion.div>
-                        <motion.div className={`w-full h-10 lg:h-20 ${grund ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessageGrund}
+                        <motion.div className={`w-full h-10 lg:h-16 ${grund ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessageGrund}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -362,7 +362,7 @@ const HomePage = () => {
                         >
                             <h1 className=" text-sm lg:text-xl font-normal">Grundkenntnisse</h1>
                         </motion.div>
-                        <motion.div className={`w-full h-10 lg:h-20 ${ich ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessageIch}
+                        <motion.div className={`w-full h-10 lg:h-16 ${ich ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessageIch}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -382,7 +382,7 @@ const HomePage = () => {
                             {['Überdurchschnittliche Vergütung zzgl. Boni', '30 Tage Urlaub', '3 freie Nachmittage und die Option auf eine 4 Tage Woche', 'Tolle Fort- und Weiterbildungsmöglichkeiten', 'Ein familiäres Team, in dem Deine Leistungen wertgeschätzt werden'].map((option) => (
                                 <motion.div
                                     key={option}
-                                    className={`w-full h-14 lg:h-20 border ${lookingForwardOptions.includes(option)
+                                    className={`w-full h-14 lg:h-16 border ${lookingForwardOptions.includes(option)
                                         ? 'bg-[#20659a] text-white' // Selected state
                                         : 'bg-[#f0f8fd] text-[#20659a]' // Default state
                                         } rounded flex items-center justify-start gap-5 pl-2 lg:pl-5 cursor-pointer`}
@@ -424,16 +424,16 @@ const HomePage = () => {
                 return (
                     <div className="space-y-2">
                         <AnimatedButton onClick={() => handleNext('time', 'Zwischen 8-12 Uhr. ')}>
-                            <h1 className=" text-xl font-normal">Zwischen 8-12 Uhr. </h1>
+                            <h1 className=" text-lg lg:text-xl font-normal">Zwischen 8-12 Uhr. </h1>
                         </AnimatedButton>
                         <AnimatedButton onClick={() => handleNext('time', 'Zwischen 12- 14 Uhr. ')}>
-                            <h1 className=" text-xl font-normal">Zwischen 12- 14 Uhr. </h1>
+                            <h1 className=" text-lg lg:text-xl font-normal">Zwischen 12- 14 Uhr. </h1>
                         </AnimatedButton>
                         <AnimatedButton onClick={() => handleNext('time', 'Zwischen 14 - 17 Uhr. ')}>
-                            <h1 className=" text-xl font-normal">Zwischen 14 - 17 Uhr. </h1>
+                            <h1 className=" text-lg lg:text-xl font-normal">Zwischen 14 - 17 Uhr. </h1>
                         </AnimatedButton>
                         <AnimatedButton onClick={() => handleNext('time', 'Zwischen 17 - 19 Uhr.')}>
-                            <h1 className=" text-xl font-normal">Zwischen 17 - 19 Uhr. </h1>
+                            <h1 className=" text-lg lg:text-xl font-normal">Zwischen 17 - 19 Uhr. </h1>
                         </AnimatedButton>
                     </div>
                 );
