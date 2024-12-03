@@ -9,7 +9,7 @@ import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import { motion } from "motion/react"
 import finalImg from '@/assets/magic form final message image.jpg'
-import { div } from "motion/react-client";
+
 
 type CountryCode = 'us' | 'bd' | 'ca' | 'de' | 'fr' | string;
 
@@ -56,7 +56,7 @@ const HomePage = () => {
     const [countryCode, setCountryCode] = useState<CountryCode | undefined>('bd');
     const [ipAddress, setIpAddress] = useState('103.204.211.42');
     const [phone, setPhone] = useState()
-    // const [isDelay, setIsDelay] = useState(false);
+    const [isClickedFinal, setIsClickedFinal] = useState(false);
     // const [formValues] = useState<FormValues>({
     //     name: '',
     //     email: '',
@@ -185,9 +185,10 @@ const HomePage = () => {
 
 
     const handleFinalMessage = () => {
+        setIsClickedFinal(true)
         setTimeout(() => {
-            setShowFinalMessage(true); // Show the final message after a 2-second delay
-        }, 2000);
+            setShowFinalMessage(true);
+        }, 600);
     };
 
     const toggleLookingForwardOption = (option: string) => {
@@ -283,7 +284,7 @@ const HomePage = () => {
                         <AnimatedButton onClick={() => handleNext('availability', '✔️ Ja klar!')}>
                             <h1 className=" text-xl font-normal">✔️ Ja klar!</h1>
                         </AnimatedButton>
-                        <motion.div className="w-full h-20 bg-[#f0f8fd] border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
+                        <motion.div className={`w-full h-20 ${isClickedFinal ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessage}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -300,7 +301,7 @@ const HomePage = () => {
             case 2:
                 return (
                     <div className="space-y-2">
-                        <motion.div className="w-full h-20 rounded-lg bg-[#f0f8fd] border border-[#cde8fc]  flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
+                        <motion.div className={`w-full h-20 ${isClickedFinal ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessage}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -331,7 +332,7 @@ const HomePage = () => {
                         <AnimatedButton onClick={() => handleNext('speaking', 'Fließend')}>
                             <h1 className=" text-xl font-normal">Fließend</h1>
                         </AnimatedButton>
-                        <motion.div className="w-full h-20 rounded-lg bg-[#f0f8fd] border border-[#cde8fc]  flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
+                        <motion.div className={`w-full h-20 ${isClickedFinal ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessage}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -342,7 +343,7 @@ const HomePage = () => {
                         >
                             <h1 className=" text-xl font-normal">Verhandlungssicher</h1>
                         </motion.div>
-                        <motion.div className="w-full h-20 rounded-lg bg-[#f0f8fd] border border-[#cde8fc]  flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
+                        <motion.div className={`w-full h-20 ${isClickedFinal ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessage}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -353,7 +354,7 @@ const HomePage = () => {
                         >
                             <h1 className=" text-xl font-normal">Grundkenntnisse</h1>
                         </motion.div>
-                        <motion.div className="w-full h-20 rounded-lg bg-[#f0f8fd] border border-[#cde8fc] flex items-center justify-start pl-5 cursor-pointer" onClick={handleFinalMessage}
+                        <motion.div className={`w-full h-20 ${isClickedFinal ? 'bg-[#20659a] text-white' : 'bg-[#f0f8fd] text-[#20659a]'} border border-[#cde8fc] rounded-lg flex items-center justify-start pl-5 cursor-pointer`} onClick={handleFinalMessage}
                             whileTap={{
                                 scale: 0.9,
                                 transition: { type: 'spring', stiffness: 500, damping: 30 },
@@ -373,9 +374,9 @@ const HomePage = () => {
                             {['Überdurchschnittliche Vergütung zzgl. Boni', '30 Tage Urlaub', '3 freie Nachmittage und die Option auf eine 4 Tage Woche', 'Tolle Fort- und Weiterbildungsmöglichkeiten', 'Ein familiäres Team, in dem Deine Leistungen wertgeschätzt werden'].map((option) => (
                                 <motion.div
                                     key={option}
-                                    className={`w-full h-14 border ${lookingForwardOptions.includes(option)
+                                    className={`w-full h-20 border ${lookingForwardOptions.includes(option)
                                         ? 'bg-[#20659a] text-white' // Selected state
-                                        : 'bg-[#f0f8fd] ' // Default state
+                                        : 'bg-[#f0f8fd] text-[#20659a]' // Default state
                                         } rounded flex items-center justify-start gap-5 pl-5 cursor-pointer`}
                                     onClick={() => toggleLookingForwardOption(option)}
                                     whileTap={{
@@ -386,12 +387,19 @@ const HomePage = () => {
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                                 >
-                                    {option === 'Überdurchschnittliche Vergütung zzgl. Boni' ? <BadgeEuro fill="#f0e2c0" color="#f0b728" size={25} /> : option === '30 Tage Urlaub' ? <Flag color="#20659a" size={25} /> : option === '3 freie Nachmittage und die Option auf eine 4 Tage Woche' ? <History color="gray" size={25} /> : option === 'Tolle Fort- und Weiterbildungsmöglichkeiten' ? <BookText color="brown" size={25} /> : <Users color="purple" size={25} />}
+                                    {option === 'Überdurchschnittliche Vergütung zzgl. Boni' ? <BadgeEuro fill="#f0e2c0" color="#f0b728" size={25} /> : option === '30 Tage Urlaub' ? <Flag color="#7899b3" size={25} /> : option === '3 freie Nachmittage und die Option auf eine 4 Tage Woche' ? <History color="gray" size={25} /> : option === 'Tolle Fort- und Weiterbildungsmöglichkeiten' ? <BookText color="brown" size={25} /> : <Users color="purple" size={25} />}
                                     <h1 className=" text-xl font-normal">{option}</h1>
                                 </motion.div>
                             ))}
                         </div>
-                        <div className="flex items-center justify-center">
+                        <motion.div className="flex items-center justify-center"
+                            whileTap={{
+                                scale: 0.9,
+                                transition: { type: 'spring', stiffness: 500, damping: 30 },
+                            }}
+                            initial={{ y: 50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ type: 'spring', stiffness: 100, damping: 20 }}>
                             <RainbowButton
                                 onClick={() => handleNext('lookingForward', lookingForwardOptions)}
                                 className="bg-[#daeaf3] text-[#20659a] border border-[#20659a] "
@@ -401,7 +409,7 @@ const HomePage = () => {
                             >
                                 Zur letzten Frage! 🏁
                             </RainbowButton>
-                        </div>
+                        </motion.div>
                     </div>
                 );
             case 5:
@@ -446,8 +454,16 @@ const HomePage = () => {
                                 {/* <p className="absolute top-5 left-5 text-2xl">👋</p> */}
                             </div>
                         </div>
-                        <p className="text-lg lg:text-xl text-[#20659a] max-w-2xl">🔒  100% sichere Datenverbindung mit SSL. Wir respektieren Deine Privatsphäre.</p>
-                        <div className="flex items-center justify-center">
+                        <p className="text-lg lg:text-xl text-center text-[#20659a] max-w-2xl">🔒  100% sichere Datenverbindung mit SSL. Wir respektieren Deine Privatsphäre.</p>
+                        <motion.div className="flex items-center justify-center"
+                            whileTap={{
+                                scale: 0.9,
+                                transition: { type: 'spring', stiffness: 500, damping: 30 },
+                            }}
+                            initial={{ y: 50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+                        >
                             <RainbowButton
                                 onClick={() => handleNext('lookingForward', lookingForwardOptions)}
                                 className="bg-[#daeaf3] text-[#20659a] border border-[#20659a] "
@@ -457,7 +473,7 @@ const HomePage = () => {
                             >
                                 Jetzt unverbindliches Kennenlerngespräch vereinbaren! 📩
                             </RainbowButton>
-                        </div>
+                        </motion.div>
                     </div>
                 );
             case 7:
@@ -496,11 +512,11 @@ const HomePage = () => {
                     <div className="blob"></div>
                 </div>
             </div>
-            <div className="pt-24 flex  justify-center backdrop">
+            <div className="py-20 flex  justify-center backdrop">
                 {showFinalMessage ? <FinalMessage /> : (
                     <div>
                         <ShineBorder
-                            className="relative flex p-32 w-full flex-col items-center justify-center overflow-hidden rounded-lg border  md:shadow-xl "
+                            className="relative flex px-32 py-20 w-full flex-col items-center justify-center overflow-hidden rounded-lg border  md:shadow-xl "
                             color={["#686570", "#FE8FB5", "#FFBE7B"]}
                         >
                             <div className="">
